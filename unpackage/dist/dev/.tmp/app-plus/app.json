@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/choose/choose",
+    "pages/cart/cart"
+  ],
+  "subPackages": [],
+  "window": {
+    "backgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#5eaf31"
+  },
+  "usingComponents": {},
+  "splashscreen": {
+    "autoclose": true
+  },
+  "appname": "hello-uni-app"
+}

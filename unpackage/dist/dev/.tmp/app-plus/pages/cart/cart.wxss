@@ -1,0 +1,6 @@
+
+.cart-page-box {
+	background-image: url(../../static/img/bgx.7026dcd4.jpg);
+	background-size:cover;
+}
+
