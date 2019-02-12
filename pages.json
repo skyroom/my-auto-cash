@@ -21,6 +21,18 @@
 			"style": {
 				"navigationBarTitleText": "商品列表"
 			}
+		},
+		{
+			"path": "pages/payType/payType",
+			"style": {
+				"navigationBarTitleText": "支付类型"
+			}
+		},
+		{
+			"path": "pages/payResult/payResult",
+			"style": {
+				"navigationBarTitleText": "支付结果"
+			}
 		}
     ],
     "globalStyle": {

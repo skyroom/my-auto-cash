@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/choose/choose",
-    "pages/cart/cart"
+    "pages/cart/cart",
+    "pages/payType/payType",
+    "pages/payResult/payResult"
   ],
   "subPackages": [],
   "window": {
@@ -13,5 +15,5 @@
   "splashscreen": {
     "autoclose": true
   },
-  "appname": "hello-uni-app"
+  "appname": "my-auto-cash"
 }

@@ -14,13 +14,33 @@
 
 <style>
 	/*每个页面公共css */
-	uni-page-body, 
-	.page-box {
+	uni-page-body, page, .page-box {
 		width: 100%;
 		height: 100%;
 	}
 	
 	.hover-class {
 		opacity: 0.7;
+	}
+	
+	@font-face {
+		font-family: 'iconfont';
+		src: url('~@/static/iconfont/iconfont.ttf');
+	}
+	
+	.xpos-font {
+		font-family: iconfont;
+	}
+	
+	.ml20 {
+		margin-left: 20px;
+	}
+	.ml10 {
+		margin-left: 10px;
+	}
+	
+	
+	.mt20 {
+		margin-top: 20px;
 	}
 </style>
