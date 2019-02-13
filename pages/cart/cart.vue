@@ -3,230 +3,24 @@
 		class="cart-page-box page-box" 
 		style="background: url(../../static/bgx.jpg);background-size:cover;"
 		scroll-y>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
+		<block v-for="(goods, index) in goodsList" :key="index">
+			<view class="goods-item">
+				<text class="goods-item-title" v-text="goods.name"></text>
+				<view class="goods-item-other">
+					<text class="price-now" v-text="goods.dj"></text>
+					<text class="price-y" v-text="goods.yj"></text>
+					<view class="amount">
+						<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
+						<text class="number" v-text="goods.amount"></text>
+						<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
+					</view>
+					<view class="sum-price" v-text="goods.hj"></view>
 				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
+				<view class="delete-goods-item">
+					<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
 				</view>
-				<view class="sum-price">¥23.00</view>
 			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
-		<view class="goods-item">
-			<text class="goods-item-title">健力宝橙味汽水250ml</text>
-			<view class="goods-item-other">
-				<text class="price-now">¥23.00/桶</text>
-				<text class="price-y">¥23.00</text>
-				<view class="amount">
-					<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-					<text class="number">1</text>
-					<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
-				</view>
-				<view class="sum-price">¥23.00</view>
-			</view>
-			<view class="delete-goods-item">
-				<view class="xpos-font close" hover-class="hover-class">&#xe7fc;</view>
-			</view>
-		</view>
+		</block>
 		<view class="order-detail-fixed">
 			<view class="user-name-con">
 				<text class="title">会员：</text>
@@ -258,8 +52,72 @@
 	export default {
 		data() {
 			return {
-				text: "健力宝橙味汽水250ml"
-
+				goodsList: [
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					},
+					{
+						name: '健力宝橙味汽水250ml',
+						dj: '¥23.00/桶',
+						yj: '¥23.00',
+						amount: '1',
+						hj: '¥23.00'
+					}
+				]
 			};
 		},
 		methods: {

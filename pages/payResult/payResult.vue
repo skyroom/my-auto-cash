@@ -1,13 +1,17 @@
 <template>
 	<view class="payResult-page-box page-box">
-		<view class="user-img-con" v-if="showSuccess">
-			<text class="xpos-font check">&#xe77e;</text>
-			<text class="ml10">恭喜您，支付成功</text>
+		<view class="sucess-info-box" v-if="showSuccess">
+			<view class="info-tip">
+				<text class="xpos-font check">&#xe77e;</text>
+				<text class="ml10">恭喜您，支付成功</text>
+			</view>
 			<button class="mt20" @click="goIndexPageHandler" hover-class="hover-class">返回首页</button>
 		</view>
-		<view class="user-img-con" v-if="showError">
-			<text class="xpos-font close">&#xe77d;</text>
-			<text class="ml10">对不起，支付失败</text>
+		<view class="error-info-box" v-if="showError">
+			<view class="info-tip">
+				<text class="xpos-font close">&#xe77d;</text>
+				<text class="ml10">对不起，支付失败</text>
+			</view>
 			<button class="mt20" hover-class="hover-class">重新支付</button>
 		</view>
 	</view>
@@ -41,12 +45,22 @@
 		.check,
 		.close {
 			font-size: 50upx;
+		}
+		.check {
 			color: #5eaf31;
-			vertical-align: text-top;
+		}
+		.close {
+			color: #fe0017;
 		}
 		button {
 			background-color: #5eaf31;
 			color: #fff;
+		}
+		.info-tip {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 </style>

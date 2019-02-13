@@ -102,6 +102,7 @@
         }
       }
     },
+    "arguments": "{\"name\":\"cart\",\"query\":\"\",\"id\":1,\"pathName\":\"pages/cart/cart\"}",
     "allowsInlineMediaPlayback": true
   }
 }
