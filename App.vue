@@ -32,15 +32,19 @@
 		font-family: iconfont;
 	}
 	
+	/* 边距 公用 */
 	.ml20 {
 		margin-left: 20px;
 	}
 	.ml10 {
 		margin-left: 10px;
 	}
-	
-	
 	.mt20 {
 		margin-top: 20px;
+	}
+	
+	/* 字体颜色 公用 */
+	.ysaaa {
+		color: #aaa;
 	}
 </style>

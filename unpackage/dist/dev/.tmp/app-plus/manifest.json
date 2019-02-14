@@ -102,7 +102,7 @@
         }
       }
     },
-    "arguments": "{\"name\":\"cart\",\"query\":\"\",\"id\":1,\"pathName\":\"pages/cart/cart\"}",
+    "arguments": "{\"name\":\"index\",\"query\":\"\",\"id\":0,\"pathName\":\"pages/index/index\"}",
     "allowsInlineMediaPlayback": true
   }
 }
