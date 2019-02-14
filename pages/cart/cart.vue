@@ -47,6 +47,7 @@
 					</view>
 				</view>
 				<view class="order-detail-right">
+					<view class="xpos-font quan" hover-class="hover-class" @click="goQuanPageHandler">&#xe6b8;</view>
 					<button class="confirm-order-btn" hover-class="hover-class" @click="goPayTypePageHandler">确认付款</button>
 				</view>
 			</view>
@@ -157,6 +158,11 @@
 					}
 				});
 			},
+			goQuanPageHandler() {
+				uni.navigateTo({
+					url: '/pages/quan/quan'
+				});
+			}
 		},
 	}
 </script>
@@ -289,6 +295,10 @@
 					}
 				}
 				.order-detail-right {
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+					flex-direction: row;
 					button {
 						font-size: 35upx;
 						color: #fff;
@@ -297,6 +307,11 @@
 						background: linear-gradient(left, #fd7853, #f45162);
 						padding-left: 65upx;
 						padding-right: 65upx;
+						margin-left: 40upx;
+					}
+					.quan {
+						color: #fff;
+						font-size: 90upx;
 					}
 				}
 			}
