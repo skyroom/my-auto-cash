@@ -12,13 +12,18 @@
 	}
 </script>
 
-<style>
+<style lang="less">
 	/*每个页面公共css */
-	uni-page-body, page, .page-box {
+	@import '~@/common/var.less';
+	
+	uni-page-body, page,  {
 		width: 100%;
 		height: 100%;
 	}
-	
+	.page-box {
+		width: 100%;
+		height: 100%;
+	} 
 	.hover-class {
 		opacity: 0.7;
 	}

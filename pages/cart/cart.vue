@@ -1,64 +1,85 @@
 <template>
-	<scroll-view 
-		class="cart-page-box page-box" 
-		style="background: url(../../static/bgx.jpg);background-size:cover;"
-		scroll-y>
-		<view class="goods-item-box">
-			<view class="back-con">
-				<button class="cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</button>
-			</view>
-			<block v-for="(goods, index) in goodsList" :key="index" >
-				<view class="goods-item">
-					<view class="goods-item-title-con">
-						<text class="goods-item-title" v-text="goods.name"></text>
-						<view class="xpos-font delete ysaaa" hover-class="hover-class">&#xe67e;</view>
-					</view>
-					<view class="goods-item-yh ysaaa">
-						<text v-if="goods.showYh">
-							优惠
-							<text>¥0.80</text>
-						</text>
-					</view>
-					<view class="goods-item-other">
-						<text class="price-now ysaaa" v-text="goods.dj"></text>
-						<view class="amount">
-							<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-							<text class="number" v-text="goods.amount"></text>
-							<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
+	<view class="cart-page-box page-box" style="background: url(../../static/bgx.jpg);background-size:cover;">
+		<scroll-view 
+			class="goods-scroll" 
+			scroll-y="scrollY">
+			<view class="goods-item-box">
+				<view class="back-con">
+					<button class="cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</button>
+				</view>
+				<block v-for="(goods, index) in goodsList" :key="index" >
+					<view class="goods-item">
+						<view class="goods-item-title-con">
+							<text class="goods-item-title" v-text="goods.name"></text>
+							<view class="xpos-font delete ysaaa" hover-class="hover-class">&#xe67e;</view>
 						</view>
-						<view class="sum-price" v-text="goods.hj"></view>
+						<view class="goods-item-yh ysaaa">
+							<text v-if="goods.showYh">
+								优惠
+								<text>¥0.80</text>
+							</text>
+						</view>
+						<view class="goods-item-other">
+							<text class="price-now ysaaa" v-text="goods.dj"></text>
+							<view class="amount">
+								<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
+								<text class="number" v-text="goods.amount"></text>
+								<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
+							</view>
+							<view class="sum-price" v-text="goods.hj"></view>
+						</view>
 					</view>
-				</view>
-			</block>
-		</view>
-		<view class="order-detail-fixed">
-			<!-- <view class="user-name-con">
-				<text class="title">会员：</text>
-				<text class="user-name-text">张三张三是</text>
-			</view> -->
-			<view class="order-detail-con">
-				<view class="order-detail-left">
-					<view class="left-top">
-						<text class="total-price">¥90.90</text>
-						<text class="total-amount">(共<text>5</text>件)</text>
+				</block>
+			</view>
+			<view class="order-detail-fixed">
+				<!-- <view class="user-name-con">
+					<text class="title">会员：</text>
+					<text class="user-name-text">张三张三是</text>
+				</view> -->
+				<view class="order-detail-con">
+					<view class="order-detail-left">
+						<view class="left-top">
+							<text class="total-price">¥90.90</text>
+							<text class="total-amount">(共<text>5</text>件)</text>
+						</view>
+						<view class="left-bottom">
+							<text class="yh">已优惠：<text>¥17.70</text></text>
+						</view>
 					</view>
-					<view class="left-bottom">
-						<text class="yh">已优惠：<text>¥17.70</text></text>
+					<view class="order-detail-right">
+						<view class="xpos-font quan" hover-class="hover-class" @click="quanClickHandler">&#xe6b8;</view>
+						<button class="confirm-order-btn" hover-class="hover-class" @click="goPayTypePageHandler">确认付款</button>
 					</view>
-				</view>
-				<view class="order-detail-right">
-					<view class="xpos-font quan" hover-class="hover-class" @click="goQuanPageHandler">&#xe6b8;</view>
-					<button class="confirm-order-btn" hover-class="hover-class" @click="goPayTypePageHandler">确认付款</button>
 				</view>
 			</view>
-		</view>
-	</scroll-view>
+		</scroll-view>
+		<xpos-popup
+			:show="showPopupBottom"
+			:type="popType"
+			v-on:hidePopup="hidePopup"
+			>
+			<scroll-view class="quan-box" scroll-y>
+				<xpos-quan-item></xpos-quan-item>
+				<xpos-quan-item></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+			</scroll-view>
+		</xpos-popup>
+	</view>
 </template>
 
 <script>
+	import xposPopup from '../../components/xpos-popup.vue';
+	import xposQuanItem from '../../components/xpos-quan-item.vue';
 	export default {
+		components: {
+			xposPopup,
+			xposQuanItem
+		},
 		data() {
 			return {
+				showPopupBottom: false,
+				popType: 'bottom',
+				scrollY: true,
 				goodsList: [
 					{
 						name: '健力宝橙味汽水250ml',
@@ -158,21 +179,28 @@
 					}
 				});
 			},
-			goQuanPageHandler() {
-				uni.navigateTo({
-					url: '/pages/quan/quan'
-				});
-			}
+			quanClickHandler() {
+				this.showPopupBottom = true;
+				this.scrollY = false;
+			},
+			hidePopup: function() {
+				this.showPopupBottom = false;
+				this.scrollY = true;
+			},
 		},
 	}
 </script>
 
 <style lang="less">
+	@import '~@/common/var.less';
 	.cart-page-box {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		.goods-scroll {
+			height: 100%;
+		}
 		.goods-item-box {
 			padding-top: var(--status-bar-height);
 			padding-bottom: 150upx;
@@ -231,7 +259,7 @@
 						.minus,
 						.plus {
 							font-size: 50upx;
-							color: #5eaf31;
+							color: @theme-color;
 						}
 						.number {
 							color: #ea9945;
@@ -315,6 +343,12 @@
 					}
 				}
 			}
+		}
+		/* 优惠券样式 */
+		.quan-box {
+			height: 100%;
+			background-color: #f5f5f5;
+			box-sizing: border-box;
 		}
 	}
 </style>

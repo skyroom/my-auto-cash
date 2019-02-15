@@ -36,6 +36,7 @@
 </script>
 
 <style lang="less">
+	@import '~@/common/var.less';
 	.payResult-page-box {
 		display: flex;
 		flex-direction: column;
@@ -47,13 +48,13 @@
 			font-size: 50upx;
 		}
 		.check {
-			color: #5eaf31;
+			color: @theme-color;
 		}
 		.close {
 			color: #fe0017;
 		}
 		button {
-			background-color: #5eaf31;
+			background-color: @theme-color;
 			color: #fff;
 		}
 		.info-tip {
