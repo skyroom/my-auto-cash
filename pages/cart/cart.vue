@@ -7,7 +7,7 @@
 				<view class="back-con">
 					<button class="cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</button>
 				</view>
-				<block v-for="(goods, index) in goodsList" :key="index" >
+				<block v-for="(goods, index) in merchantGoodsList" :key="index" >
 					<view class="goods-item">
 						<view class="goods-item-title-con">
 							<text class="goods-item-title" v-text="goods.name"></text>
@@ -47,8 +47,8 @@
 						</view>
 					</view>
 					<view class="order-detail-right">
-						<view class="xpos-font quan" hover-class="hover-class" @click="quanClickHandler">&#xe6b8;</view>
-						<button class="confirm-order-btn" hover-class="hover-class" @click="goPayTypePageHandler">确认付款</button>
+						<view class="xpos-font quan" hover-class="hover-class" @click="openQuanHandler">&#xe6b8;</view>
+						<button class="confirm-order-btn" hover-class="hover-class" @click="openPayTypeHandler">确认付款</button>
 					</view>
 				</view>
 			</view>
@@ -62,12 +62,29 @@
 				<xpos-quan-item></xpos-quan-item>
 				<xpos-quan-item></xpos-quan-item>
 				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
 			</scroll-view>
+		</xpos-popup>
+		<xpos-popup
+			:show="showPayTypePop"
+			:type="popType"
+			@hidePopup="hidePayTypePopup"
+			>
+			支付宝
 		</xpos-popup>
 	</view>
 </template>
 
 <script>
+	import { mapGetters, mapActions } from 'vuex';
 	import xposPopup from '../../components/xpos-popup.vue';
 	import xposQuanItem from '../../components/xpos-quan-item.vue';
 	export default {
@@ -80,67 +97,18 @@
 				showPopupBottom: false,
 				popType: 'bottom',
 				scrollY: true,
-				goodsList: [
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: true,
-						dj: '¥92590.00',
-						amount: '99',
-						hj: '¥236050.00'
-					},
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: false,
-						dj: '¥9.00',
-						amount: '2',
-						hj: '¥18.00'
-					},
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: true,
-						dj: '¥23.00',
-						amount: '12',
-						hj: '¥230.00'
-					},
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: true,
-						dj: '¥200.00',
-						amount: '10',
-						hj: '¥2000.00'
-					},
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: true,
-						dj: '¥92590.00',
-						amount: '99',
-						hj: '¥23605.00'
-					},
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: false,
-						dj: '¥9.00',
-						amount: '2',
-						hj: '¥18.00'
-					},
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: true,
-						dj: '¥23.00',
-						amount: '12',
-						hj: '¥230.00'
-					},
-					{
-						name: '健力宝橙味汽水250ml',
-						showYh: true,
-						dj: '¥200.00',
-						amount: '10',
-						hj: '¥2000.00'
-					}
-				]
+				showPayTypePop: false,
 			};
 		},
+		computed: {
+			...mapGetters([
+				'merchantGoodsList',
+			]),
+		},
 		methods: {
+			...mapActions([
+				'getMerchantGoodsList',
+			]),
 			showActionHandler() {
 				// console.log(0);
 				uni.showActionSheet({
@@ -179,15 +147,29 @@
 					}
 				});
 			},
-			quanClickHandler() {
+			openQuanHandler() {
 				this.showPopupBottom = true;
 				this.scrollY = false;
 			},
-			hidePopup: function() {
+			hidePopup() {
 				this.showPopupBottom = false;
 				this.scrollY = true;
 			},
+			openPayTypeHandler() {
+				this.showPayTypePop = true;
+				this.scrollY = false;
+			},
+			hidePayTypePopup() {
+				this.showPayTypePop = false;
+				this.scrollY = true;
+			}
 		},
+		onLoad() {
+			this.getMerchantGoodsList()
+			.then((data) => {
+				console.log('data is', JSON.stringify(data));
+			});
+		}
 	}
 </script>
 
@@ -346,7 +328,7 @@
 		}
 		/* 优惠券样式 */
 		.quan-box {
-			height: 100%;
+			height: 600upx;
 			background-color: #f5f5f5;
 			box-sizing: border-box;
 		}

@@ -1,0 +1,2 @@
+// 商品
+export const SET_MERCHANT_GOODS_LIST = 'SET_MERCHANT_GOODS_LIST';

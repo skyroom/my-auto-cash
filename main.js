@@ -4,7 +4,9 @@ import App from './App'
 // import pageHead from './components/page-head.vue'
 // import pageFoot from './components/page-foot.vue'
 
-import store from './store'
+// import store from './store'
+
+import store from './vuex/store'
 
 Vue.config.productionTip = false
 
