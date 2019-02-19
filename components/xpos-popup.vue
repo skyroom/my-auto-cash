@@ -59,14 +59,14 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		width: 380upx;
 		height: 380upx;
 		border-radius: 10upx;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		justify-content: center;
-		padding: 30upx;
+		
 	}
 
 	.uni-popup-top {

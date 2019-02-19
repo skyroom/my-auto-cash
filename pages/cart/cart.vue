@@ -56,29 +56,31 @@
 		<xpos-popup
 			:show="showPopupBottom"
 			:type="popType"
-			v-on:hidePopup="hidePopup"
+			@hidePopup="hidePopup"
 			>
 			<scroll-view class="quan-box" scroll-y>
-				<xpos-quan-item></xpos-quan-item>
-				<xpos-quan-item></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				<view class="quan-con">
+					<xpos-quan-item></xpos-quan-item>
+					<view class="white-block"></view>
+					<xpos-quan-item></xpos-quan-item>
+					<view class="white-block"></view>
+					<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+					<view class="white-block"></view>
+					<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+				</view>
 			</scroll-view>
 		</xpos-popup>
 		<xpos-popup
 			:show="showPayTypePop"
-			:type="popType"
+			type="middle"
 			@hidePopup="hidePayTypePopup"
 			>
-			支付宝
+			<view class="paytype-box">
+				<view class="smzf-con">
+					<text class="xpos-font">&#xe612;</text>
+				</view>
+				<view class="paytype-text" hover-class="hover-class" @click="goPayResultPageHandler">请扫描微信或支付宝支付码完成支付</view>
+			</view>
 		</xpos-popup>
 	</view>
 </template>
@@ -162,6 +164,11 @@
 			hidePayTypePopup() {
 				this.showPayTypePop = false;
 				this.scrollY = true;
+			},
+			goPayResultPageHandler() {
+				uni.navigateTo({
+					url: '/pages/payResult/payResult'
+				});
 			}
 		},
 		onLoad() {
@@ -331,6 +338,22 @@
 			height: 600upx;
 			background-color: #f5f5f5;
 			box-sizing: border-box;
+			.quan-con {
+				padding: 20upx;
+			}
+		}
+		.paytype-box {
+			padding: 0 30upx;
+			.paytype-text {
+				line-height: 1.5;
+				font-size: 35upx;
+				color: #333;
+			}
+			.smzf-con {
+				font-size: 150upx;
+				text-align: center;
+				color: @theme-color;
+			}
 		}
 	}
 </style>

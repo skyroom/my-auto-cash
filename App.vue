@@ -52,4 +52,9 @@
 	.ysaaa {
 		color: #aaa;
 	}
+	
+	/* 分割线 */
+	 .white-block {
+		 height: 20upx;
+	 }
 </style>

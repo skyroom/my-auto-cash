@@ -61,7 +61,6 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: stretch;
-		padding: 20upx;
 		&.unuse {
 			.quan-price {
 				background-color: #aaa;
