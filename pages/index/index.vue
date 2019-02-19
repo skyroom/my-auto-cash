@@ -37,7 +37,7 @@
 					url: '/pages/choose/choose'
 				});
 			}
-		}
+		},
 	}
 </script>
 

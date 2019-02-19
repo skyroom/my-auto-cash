@@ -69,5 +69,6 @@ var dateUtils = {
 module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
-	dateUtils: dateUtils
+	dateUtils: dateUtils,
+	gTime: 3000,
 }

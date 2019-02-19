@@ -11,7 +11,10 @@
 </template>
 
 <script>
+	import globalTimer from '../../components/global-timer.vue';
+	
 	export default {
+		mixins: [globalTimer],
 		data() {
 			return {
 
@@ -23,6 +26,10 @@
 					url: '/pages/cart/cart'
 				});
 			}
+		},
+		onHide() {
+			clearTimeout(this.gTimer);
+			console.log('choose onHide');
 		}
 	}
 </script>

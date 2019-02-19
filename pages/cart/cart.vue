@@ -89,7 +89,10 @@
 	import { mapGetters, mapActions } from 'vuex';
 	import xposPopup from '../../components/xpos-popup.vue';
 	import xposQuanItem from '../../components/xpos-quan-item.vue';
+	import globalTimer from '../../components/global-timer.vue';
+	
 	export default {
+		mixins: [globalTimer],
 		components: {
 			xposPopup,
 			xposQuanItem
@@ -174,8 +177,12 @@
 		onLoad() {
 			this.getMerchantGoodsList()
 			.then((data) => {
-				console.log('data is', JSON.stringify(data));
+				// console.log('data is', JSON.stringify(data));
 			});
+		},
+		onHide() {
+			clearTimeout(this.gTimer);
+			console.log('cart onHide');
 		}
 	}
 </script>
@@ -352,7 +359,7 @@
 			.smzf-con {
 				font-size: 150upx;
 				text-align: center;
-				color: @theme-color;
+				color: #FF6B01;
 			}
 		}
 	}
