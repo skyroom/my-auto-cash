@@ -3,6 +3,7 @@ import actions from './actions';
 import getters from './getters';
 import {
     SET_MERCHANT_GOODS_LIST,
+	ADD_GOODS_INTO_LIST,
 } from '../mutation-types';
 
 const initState = {
@@ -12,6 +13,9 @@ const initState = {
 const mutations = {
     [SET_MERCHANT_GOODS_LIST](state, data) {
         Vue.set(state, 'merchantGoodsList', data || []);
+    },
+	[ADD_GOODS_INTO_LIST](state, data) {
+		state.merchantGoodsList.unshift(data);
     },
 };
 

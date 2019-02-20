@@ -7,8 +7,8 @@
 				<view class="back-con">
 					<button class="cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</button>
 				</view>
-				<block v-for="(goods, index) in merchantGoodsList" :key="index" >
-					<view class="goods-item">
+				<block v-for="(goods, index) in merchantGoodsList" :key="index">
+					<view :animation="goodItemAnimationData[index]" :class="{ 'goods-item': true, 'first-goods': index == 0 }">
 						<view class="goods-item-title-con">
 							<text class="goods-item-title" v-text="goods.name"></text>
 							<view class="xpos-font delete ysaaa" hover-class="hover-class">&#xe67e;</view>
@@ -29,6 +29,7 @@
 							<view class="sum-price" v-text="goods.hj"></view>
 						</view>
 					</view>
+					<view class="white-block"></view>
 				</block>
 			</view>
 			<view class="order-detail-fixed">
@@ -38,7 +39,7 @@
 				</view> -->
 				<view class="order-detail-con">
 					<view class="order-detail-left">
-						<view class="left-top">
+						<view class="left-top" @click="showGoodsPopHandler">
 							<text class="total-price">¥90.90</text>
 							<text class="total-amount">(共<text>5</text>件)</text>
 						</view>
@@ -82,6 +83,17 @@
 				<view class="paytype-text" hover-class="hover-class" @click="goPayResultPageHandler">请扫描微信或支付宝支付码完成支付</view>
 			</view>
 		</xpos-popup>
+		<view class="goods-pop-box" v-if="showGoodsPop" :animation="goodsPopAnimationData">
+			<view class="goods-img-pop">
+				<image src="/static/kele.png" mode="scaleToFill"></image>
+			</view>
+			<view class="goods-title-pop">
+				我是商品名称
+			</view>
+			<view class="goods-price-pop">
+				¥22.00
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -103,6 +115,9 @@
 				popType: 'bottom',
 				scrollY: true,
 				showPayTypePop: false,
+				showGoodsPop: false,
+				goodsPopAnimationData: '',
+				goodItemAnimationData: [],
 			};
 		},
 		computed: {
@@ -113,6 +128,7 @@
 		methods: {
 			...mapActions([
 				'getMerchantGoodsList',
+				'addGoodsIntoList',
 			]),
 			showActionHandler() {
 				// console.log(0);
@@ -172,6 +188,32 @@
 				uni.navigateTo({
 					url: '/pages/payResult/payResult'
 				});
+			},
+			showGoodsPopHandler() {
+				this.showGoodsPop = true;
+				setTimeout(() => {
+					this.goodsPopTranslate();
+				}, 1000);
+			},
+// 			addGoodsHandler() {
+// 				this.addGoodsIntoList();
+// 				setTimeout(() =>{
+// 					this.animation.opacity(1).step();
+// 					this.goodItemAnimationData[0] = this.animation.export();
+// 				}, 2000);
+// 			},
+			goodsPopTranslate() {
+				this.animation.translate(-160, -220).scale(0.3).opacity(0.1).step();
+				this.goodsPopAnimationData = this.animation.export();
+				// this.addGoodsHandler();
+				setTimeout(() =>{
+					this.showGoodsPop = false;
+					this.animation.translate(0, 0).scale(1).opacity(1).step({
+						duration: 0
+					});
+					this.goodsPopAnimationData = this.animation.export();
+					this.addGoodsIntoList();
+				}, 400);
 			}
 		},
 		onLoad() {
@@ -179,10 +221,14 @@
 			.then((data) => {
 				// console.log('data is', JSON.stringify(data));
 			});
+			console.log('cart onload');
+			this.animation = uni.createAnimation();
+		},
+		onUnload(){
+			this.goodsPopAnimationData = '';
 		},
 		onHide() {
 			clearTimeout(this.gTimer);
-			console.log('cart onHide');
 		}
 	}
 </script>
@@ -220,7 +266,10 @@
 				margin-right: 20upx;
 				padding: 30upx;
 				position: relative;
-				margin-bottom: 20upx;
+				// margin-bottom: 20upx;
+				&.first-goods {
+					// opacity: 0.1;
+				}
 				.goods-item-title-con {
 					display: flex;
 					flex-direction: row;
@@ -360,6 +409,42 @@
 				font-size: 150upx;
 				text-align: center;
 				color: #FF6B01;
+			}
+		}
+		.goods-pop-box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-end;
+			width: 400upx;
+			height: 400upx;
+			border-radius: 10upx;
+			top: 50%;
+			left: 50%;
+			margin: -200upx 0 0 -200upx;
+			// transform: translate(-50%, -50%);
+			position: absolute;
+			z-index: 999;
+			background-color: #fff;
+			box-shadow: 0 0 30upx rgba(0, 0, 0, .1);
+			padding: 10upx;
+			.goods-img-pop {
+				width: 100%;
+				flex: 1;
+				image {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.goods-title-pop {
+				color: #333;
+				font-size: 35upx;
+				line-height: 2;
+			}
+			.goods-price-pop {
+				color: #ff8b09;
+				font-size: 35upx;
+				line-height: 2;
 			}
 		}
 	}

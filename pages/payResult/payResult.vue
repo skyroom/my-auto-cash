@@ -24,8 +24,8 @@
 		mixins: [globalTimer],
 		data() {
 			return {
-				showError: true,
-				showSuccess: false,
+				showError: false,
+				showSuccess: true,
 			};
 		},
 		methods: {
@@ -37,7 +37,6 @@
 		},
 		onHide() {
 			clearTimeout(this.gTimer);
-			console.log('payResult onHide');
 		}
 	}
 </script>

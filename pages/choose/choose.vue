@@ -29,7 +29,6 @@
 		},
 		onHide() {
 			clearTimeout(this.gTimer);
-			console.log('choose onHide');
 		}
 	}
 </script>

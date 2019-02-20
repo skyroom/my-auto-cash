@@ -11,7 +11,7 @@ export default {
 		console.log('this.gTimer is', this.gTimer);
 		clearTimeout(this.gTimer);
 		this.gTimer = setTimeout(() => {
-			uni.navigateTo({
+			uni.reLaunch({
 				url: '/pages/index/index',
 				success: () => {
 					clearTimeout(this.gTimer);
