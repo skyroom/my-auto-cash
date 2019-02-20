@@ -8,25 +8,27 @@
 					<button class="cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</button>
 				</view>
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
-					<view :animation="goodItemAnimationData[index]" :class="{ 'goods-item': true, 'first-goods': index == 0 }">
-						<view class="goods-item-title-con">
-							<text class="goods-item-title" v-text="goods.name"></text>
-							<view class="xpos-font delete ysaaa" hover-class="hover-class">&#xe67e;</view>
-						</view>
-						<view class="goods-item-yh ysaaa">
-							<text v-if="goods.showYh">
-								优惠
-								<text>¥0.80</text>
-							</text>
-						</view>
-						<view class="goods-item-other">
-							<text class="price-now ysaaa" v-text="goods.dj"></text>
-							<view class="amount">
-								<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
-								<text class="number" v-text="goods.amount"></text>
-								<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
+					<view :class="{ 'goods-item': true, 'first-goods': index == 0 && goodsItemMove}">
+						<view class="goods-item-con">
+							<view class="goods-item-title-con">
+								<text class="goods-item-title" v-text="goods.name"></text>
+								<view class="xpos-font delete ysaaa" hover-class="hover-class">&#xe67e;</view>
 							</view>
-							<view class="sum-price" v-text="goods.hj"></view>
+							<view class="goods-item-yh ysaaa">
+								<text v-if="goods.showYh">
+									优惠
+									<text>¥0.80</text>
+								</text>
+							</view>
+							<view class="goods-item-other">
+								<text class="price-now ysaaa" v-text="goods.dj"></text>
+								<view class="amount">
+									<view class="xpos-font minus" hover-class="hover-class">&#xe780;</view>
+									<text class="number" v-text="goods.amount"></text>
+									<view class="xpos-font plus" hover-class="hover-class">&#xe781;</view>
+								</view>
+								<view class="sum-price" v-text="goods.hj"></view>
+							</view>
 						</view>
 					</view>
 					<view class="white-block"></view>
@@ -83,7 +85,7 @@
 				<view class="paytype-text" hover-class="hover-class" @click="goPayResultPageHandler">请扫描微信或支付宝支付码完成支付</view>
 			</view>
 		</xpos-popup>
-		<view class="goods-pop-box" v-if="showGoodsPop" :animation="goodsPopAnimationData">
+		<view :class="{'goods-pop-box':true, 'goods-pop-move': goodsPopMove}" v-if="showGoodsPop" :animation="goodsPopAnimationData">
 			<view class="goods-img-pop">
 				<image src="/static/kele.png" mode="scaleToFill"></image>
 			</view>
@@ -104,7 +106,7 @@
 	import globalTimer from '../../components/global-timer.vue';
 	
 	export default {
-		mixins: [globalTimer],
+		// mixins: [globalTimer],
 		components: {
 			xposPopup,
 			xposQuanItem
@@ -118,6 +120,13 @@
 				showGoodsPop: false,
 				goodsPopAnimationData: '',
 				goodItemAnimationData: [],
+				windowWidth: '',
+				windowHeight: '',
+				statusBarHeight: '',
+				translateX: '',
+				translateY: '',
+				goodsPopMove: false,
+				goodsItemMove: false,
 			};
 		},
 		computed: {
@@ -192,43 +201,32 @@
 			showGoodsPopHandler() {
 				this.showGoodsPop = true;
 				setTimeout(() => {
-					this.goodsPopTranslate();
+					this.goodsPopMove = true;
+					setTimeout(() => {
+						this.showGoodsPop = false;
+						this.goodsPopMove = false;
+						this.addGoodsHandler();
+					}, 500);
 				}, 1000);
 			},
-// 			addGoodsHandler() {
-// 				this.addGoodsIntoList();
-// 				setTimeout(() =>{
-// 					this.animation.opacity(1).step();
-// 					this.goodItemAnimationData[0] = this.animation.export();
-// 				}, 2000);
-// 			},
-			goodsPopTranslate() {
-				this.animation.translate(-160, -220).scale(0.3).opacity(0.1).step();
-				this.goodsPopAnimationData = this.animation.export();
-				// this.addGoodsHandler();
+			addGoodsHandler() {
+				this.addGoodsIntoList();
+				this.goodsItemMove = true;
 				setTimeout(() =>{
-					this.showGoodsPop = false;
-					this.animation.translate(0, 0).scale(1).opacity(1).step({
-						duration: 0
-					});
-					this.goodsPopAnimationData = this.animation.export();
-					this.addGoodsIntoList();
-				}, 400);
-			}
+					this.goodsItemMove = false;
+				}, 500);
+			},
 		},
 		onLoad() {
 			this.getMerchantGoodsList()
 			.then((data) => {
 				// console.log('data is', JSON.stringify(data));
 			});
-			console.log('cart onload');
-			this.animation = uni.createAnimation();
 		},
 		onUnload(){
-			this.goodsPopAnimationData = '';
 		},
 		onHide() {
-			clearTimeout(this.gTimer);
+			// clearTimeout(this.gTimer);
 		}
 	}
 </script>
@@ -240,6 +238,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		position: relative;
 		.goods-scroll {
 			height: 100%;
 		}
@@ -264,61 +263,70 @@
 				border-radius: 10upx;
 				margin-left: 20upx;
 				margin-right: 20upx;
-				padding: 30upx;
 				position: relative;
-				// margin-bottom: 20upx;
+				transition: all .5s linear;
+				box-sizing: border-box;
+				height: 200upx;
+				overflow: hidden;
+				transform-origin: top center;
 				&.first-goods {
-					// opacity: 0.1;
+					opacity: 0.1;
+					height: 0;
+					transform: scale(.1, .1);
+					animation: goodItemMove .5s linear;
 				}
-				.goods-item-title-con {
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					align-items: center;
-					.goods-item-title {
-						font-size: 35upx;
-						color: #000;
-					}
-					.delete {
-						font-size: 35upx;
-					}
-				}
-				.goods-item-yh {
-					font-size: 30upx;
-					height: 40upx;
-				}
-				.goods-item-other {
-					padding-top: 5upx;
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					justify-content: space-between;
-					.price-now {
-						flex: 1;
-					}
-					.amount {
+				.goods-item-con {
+					padding: 30upx;
+					.goods-item-title-con {
 						display: flex;
 						flex-direction: row;
 						justify-content: space-between;
 						align-items: center;
-						.minus,
-						.plus {
-							font-size: 50upx;
-							color: @theme-color;
+						.goods-item-title {
+							font-size: 35upx;
+							color: #000;
 						}
-						.number {
-							color: #ea9945;
-							margin-left: 5upx;
-							margin-right: 5upx;
-							text-align: center;
-							width: 50upx;
+						.delete {
+							font-size: 35upx;
 						}
 					}
-					.sum-price {
-						font-weight: 500;
-						color: #ea9945;
-						flex: 1;
-						text-align: right;
+					.goods-item-yh {
+						font-size: 30upx;
+						height: 40upx;
+					}
+					.goods-item-other {
+						padding-top: 5upx;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						justify-content: space-between;
+						.price-now {
+							flex: 1;
+						}
+						.amount {
+							display: flex;
+							flex-direction: row;
+							justify-content: space-between;
+							align-items: center;
+							.minus,
+							.plus {
+								font-size: 50upx;
+								color: @theme-color;
+							}
+							.number {
+								color: #ea9945;
+								margin-left: 5upx;
+								margin-right: 5upx;
+								text-align: center;
+								width: 50upx;
+							}
+						}
+						.sum-price {
+							font-weight: 500;
+							color: #ea9945;
+							flex: 1;
+							text-align: right;
+						}
 					}
 				}
 			}
@@ -412,22 +420,35 @@
 			}
 		}
 		.goods-pop-box {
+			box-sizing: border-box;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: flex-end;
+			position: absolute;
 			width: 400upx;
 			height: 400upx;
 			border-radius: 10upx;
-			top: 50%;
-			left: 50%;
-			margin: -200upx 0 0 -200upx;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			// margin: -200upx 0 0 -200upx;
 			// transform: translate(-50%, -50%);
-			position: absolute;
 			z-index: 999;
 			background-color: #fff;
 			box-shadow: 0 0 30upx rgba(0, 0, 0, .1);
 			padding: 10upx;
+			transform-origin: top left;
+			transition: all .5s linear;
+			&.goods-pop-move {
+				top: -50%;
+				left: -45%;
+				opacity: .1;
+				transform: scale(.5, .5);
+				// animation: popmove .5s linear;
+			}
 			.goods-img-pop {
 				width: 100%;
 				flex: 1;
@@ -445,6 +466,35 @@
 				color: #ff8b09;
 				font-size: 35upx;
 				line-height: 2;
+			}
+		}
+		
+		@keyframes popmove
+		{
+			from {
+				top: 0;
+				left: 0;
+				opacity: 1;
+				transform: scale(1, 1);
+			}
+			to {
+				top: -50%;
+				left: -45%;
+				opacity: .1;
+				transform: scale(.5, .5);
+			}
+		}
+		@keyframes goodItemMove
+		{
+			from {
+				opacity: .1;
+				height: 0;
+				transform: scale(.1, .1);
+			}
+			to {
+				height: 200upx;
+				opacity: 1;
+				transform: scale(1, 1);
 			}
 		}
 	}
