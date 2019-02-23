@@ -7,6 +7,7 @@
 				<view class="back-con">
 					<button class="cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</button>
 				</view>
+				
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
 					<view :class="{ 'goods-item': true, 'first-goods': index == 0 && goodsItemMove}">
 						<view class="goods-item-con">
@@ -33,6 +34,7 @@
 					</view>
 					<view class="white-block"></view>
 				</block>
+				
 			</view>
 			<view class="order-detail-fixed">
 				<!-- <view class="user-name-con">
@@ -276,12 +278,16 @@
 					animation: goodItemMove .5s linear;
 				}
 				.goods-item-con {
-					padding: 30upx;
+					padding: 20upx;
+					box-sizing: border-box;
+					height: 100%;
 					.goods-item-title-con {
 						display: flex;
 						flex-direction: row;
 						justify-content: space-between;
 						align-items: center;
+						box-sizing: border-box;
+						height: 60upx;
 						.goods-item-title {
 							font-size: 35upx;
 							color: #000;
@@ -291,15 +297,16 @@
 						}
 					}
 					.goods-item-yh {
-						font-size: 30upx;
 						height: 40upx;
+						padding-bottom: 10upx;
+						font-size: 30upx;
 					}
 					.goods-item-other {
-						padding-top: 5upx;
 						display: flex;
 						flex-direction: row;
 						align-items: center;
-						justify-content: space-between;
+						justify-content: flex-start;
+						height: 50upx;
 						.price-now {
 							flex: 1;
 						}
@@ -440,11 +447,11 @@
 			background-color: #fff;
 			box-shadow: 0 0 30upx rgba(0, 0, 0, .1);
 			padding: 10upx;
-			transform-origin: top left;
+			// transform-origin: top left;
 			transition: all .5s linear;
 			&.goods-pop-move {
 				top: -50%;
-				left: -45%;
+				// left: -45%;
 				opacity: .1;
 				transform: scale(.5, .5);
 				// animation: popmove .5s linear;

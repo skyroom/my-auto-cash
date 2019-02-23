@@ -5,14 +5,14 @@
 				<text class="xpos-font check">&#xe623;</text>
 				<text class="ml10">支付成功</text>
 			</view>
-			<button class="mt20" @click="goIndexPageHandler" hover-class="hover-class">返回首页</button>
+			<view class="mt20 button" @click="goIndexPageHandler" hover-class="hover-class">返回首页</view>
 		</view>
 		<view class="error-info-box info-box" v-if="showError">
 			<view class="info-tip">
 				<text class="xpos-font close">&#xe621;</text>
 				<text class="ml10">支付失败</text>
 			</view>
-			<button class="mt20" hover-class="hover-class">重新支付</button>
+			<view class="mt20 button" hover-class="hover-class">重新支付</view>
 		</view>
 	</view>
 </template>

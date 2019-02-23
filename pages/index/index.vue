@@ -17,7 +17,7 @@
 				</view>
 			</swiper-item>
 		</swiper>
-		<button class="start-btn" hover-class="hover-class" @click="goChoosePageHandler">点击开始自助收银结算</button>
+		<view class="start-btn button" hover-class="hover-class" @click="goChoosePageHandler">点击开始自助收银结算</view>
 	</view>
 </template>
 

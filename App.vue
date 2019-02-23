@@ -54,7 +54,26 @@
 	}
 	
 	/* 分割线 */
-	 .white-block {
-		 height: 20upx;
-	 }
+	.white-block {
+		height: 20upx;
+	}
+	
+	/* 按钮样式 */
+	.button {
+		background-color: @theme-color;
+		display: block;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 20upx;
+		padding-right: 20upx;
+		box-sizing: border-box;
+		text-align: center;
+		line-height: 2.5;
+		font-size: 35upx;
+		color: #fff;
+		overflow: hidden;
+		text-decoration: none;
+		border-radius: 50upx;
+	}
 </style>
