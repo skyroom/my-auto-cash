@@ -5,7 +5,7 @@
 			scroll-y="scrollY">
 			<view class="goods-item-box">
 				<view class="back-con">
-					<button class="cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</button>
+					<view class="button small cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</view>
 				</view>
 				
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
@@ -52,8 +52,12 @@
 						</view>
 					</view>
 					<view class="order-detail-right">
-						<view class="xpos-font quan" hover-class="hover-class" @click="openQuanHandler">&#xe6b8;</view>
-						<button class="confirm-order-btn" hover-class="hover-class" @click="openPayTypeHandler">确认付款</button>
+						<view class="quan" hover-class="hover-class" @click="openQuanHandler">
+							<text class="xpos-font">&#xe6b8;</text>
+						</view>
+						<view class="confirm-order-btn" hover-class="hover-class" @click="openPayTypeHandler">
+							<text>确认付款</text>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -89,7 +93,7 @@
 		</xpos-popup>
 		<view :class="{'goods-pop-box':true, 'goods-pop-move': goodsPopMove}" v-if="showGoodsPop" :animation="goodsPopAnimationData">
 			<view class="goods-img-pop">
-				<image src="/static/kele.png" mode="scaleToFill"></image>
+				<image src="../../static/kele.png" mode="scaleToFill"></image>
 			</view>
 			<view class="goods-title-pop">
 				我是商品名称
@@ -293,13 +297,16 @@
 							color: #000;
 						}
 						.delete {
-							font-size: 35upx;
+							font-size: 50upx;
 						}
 					}
 					.goods-item-yh {
 						height: 40upx;
 						padding-bottom: 10upx;
 						font-size: 30upx;
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
 					}
 					.goods-item-other {
 						display: flex;
@@ -344,6 +351,8 @@
 			right: 0;
 			left: 0;
 			background-color: #479e17;
+			height: 120upx;
+			box-sizing: border-box;
 			/* box-shadow: darkgrey 0 0 25upx 5upx; */
 			// border-top: 2px solid #5eaf31;
 			.user-name-con {
@@ -360,10 +369,19 @@
 				flex-direction: row;
 				justify-content: space-between;
 				align-items: center;
-				padding: 20upx 20upx 20upx 20upx;
+				padding: 10upx 20upx 10upx 20upx;
+				height: 100%;
+				box-sizing: border-box;
 				.order-detail-left {
 					font-size: 30upx;
+					box-sizing: border-box;
+					height: 100%;
 					.left-top {
+						height: 60%;
+						display: flex;
+						flex-direction: row;
+						justify-content: flex-start;
+						align-items: baseline;
 						.total-price {
 							color: #ff8b09;
 							font-size: 45upx;
@@ -376,6 +394,11 @@
 						}
 					}
 					.left-bottom {
+						height: 40%;
+						display: flex;
+						flex-direction: row;
+						justify-content: flex-start;
+						align-items: center;
 						.yh {
 							color: #fff;
 							font-size: 27upx;
@@ -387,19 +410,34 @@
 					justify-content: flex-end;
 					align-items: center;
 					flex-direction: row;
-					button {
-						font-size: 35upx;
-						color: #fff;
-					}
+					box-sizing: border-box;
+					height: 100%;
 					.confirm-order-btn {
 						background: linear-gradient(left, #fd7853, #f45162);
 						padding-left: 65upx;
 						padding-right: 65upx;
 						margin-left: 40upx;
+						font-size: 35upx;
+						color: #fff;
+						height: 80%;
+						box-sizing: border-box;
+						border-radius: 50upx;
+						line-height: 80%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						flex-direction: row;
 					}
 					.quan {
-						color: #fff;
-						font-size: 90upx;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						text {
+							color: #fff;
+							font-size: 100upx;
+							display: block;
+						}
+						height: 80%;
 					}
 				}
 			}
@@ -409,6 +447,8 @@
 			height: 600upx;
 			background-color: #f5f5f5;
 			box-sizing: border-box;
+			border-top-left-radius: 20upx;
+			border-top-right-radius: 20upx;
 			.quan-con {
 				padding: 20upx;
 			}

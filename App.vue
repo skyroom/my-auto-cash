@@ -76,4 +76,7 @@
 		text-decoration: none;
 		border-radius: 50upx;
 	}
+	.button.small {
+		border-radius: 25upx;
+	}
 </style>
