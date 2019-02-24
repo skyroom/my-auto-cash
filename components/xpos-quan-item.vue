@@ -11,9 +11,9 @@
 					<view class="quan-rep ysaaa">即日起至2019-02-28</view>
 				</view>
 				<view class="top-right">
-					<text class="xpos-font kong">&#xecee;</text>
-					<text class="xpos-font disabled">&#xecee;</text>
-					<text class="xpos-font checked">&#xec3b;</text>
+					<text class="xpos-font xpos-radio kong">&#xecee;</text>
+					<text class="xpos-font xpos-radio disabled">&#xecee;</text>
+					<text class="xpos-font xpos-radio checked">&#xec3b;</text>
 				</view>
 			</view>
 			<view class="info-bottom ysaaa">
@@ -131,19 +131,6 @@
 				}
 				.top-right {
 					padding-right: 20upx;
-					text {
-						font-size: 50upx;
-						color: #999;
-					}
-					.kong {
-						
-					}
-					.disabled {
-						opacity: .3;
-					}
-					.checked {
-						color: @theme-color;
-					}
 				}
 			}
 			.info-bottom {

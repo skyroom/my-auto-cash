@@ -79,7 +79,7 @@ const addGoodsIntoList = async (
     { commit, state },
 ) => (await new Promise((resolve, reject) => {
 		const goodsTemp = {
-			name: '手动添加的商品',
+			name: '手动添加的商品手动添加的商品手动添加的商品',
 			showYh: true,
 			dj: '¥200.00',
 			amount: '10',

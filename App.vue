@@ -118,4 +118,16 @@
 	.button.small {
 		border-radius: 25upx;
 	}
+	
+	/* radio 样式 */
+	.xpos-radio {
+		font-size: 55upx;
+		color: #999;
+		&.disabled {
+			opacity: .3;
+		}
+		&.checked {
+			color: @theme-color;
+		}
+	}
 </style>

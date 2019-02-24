@@ -67,6 +67,13 @@
 			>
 			<scroll-view class="quan-box" scroll-y>
 				<view class="quan-con">
+					<view class="un-use-box">
+						<view class="un-use-text">不使用优惠券</view>
+						<view class="radio-con">
+							<text class="xpos-font xpos-radio kong">&#xecee;</text>
+							<text class="xpos-font xpos-radio checked">&#xec3b;</text>
+						</view>
+					</view>
 					<xpos-quan-item></xpos-quan-item>
 					<view class="white-block"></view>
 					<xpos-quan-item></xpos-quan-item>
@@ -186,19 +193,19 @@
 			},
 			openQuanHandler() {
 				this.showPopupBottom = true;
-				this.scrollY = false;
+				// this.scrollY = false;
 			},
 			hidePopup() {
 				this.showPopupBottom = false;
-				this.scrollY = true;
+				// this.scrollY = true;
 			},
 			openPayTypeHandler() {
 				this.showPayTypePop = true;
-				this.scrollY = false;
+				// this.scrollY = false;
 			},
 			hidePayTypePopup() {
 				this.showPayTypePop = false;
-				this.scrollY = true;
+				// this.scrollY = true;
 			},
 			goPayResultPageHandler() {
 				uni.navigateTo({
@@ -269,6 +276,11 @@
 					border-top-right-radius: 35upx; 
 					color: #fff;
 					font-size: 30upx;
+					.un-use-box {
+						font-size: 35upx;
+					}
+					.radio-con {
+					}
 				}
 			}
 			.goods-item {
@@ -302,9 +314,14 @@
 						.goods-item-title {
 							font-size: 35upx;
 							color: #000;
+							flex: 1;
+							overflow: hidden;
+							text-overflow:ellipsis;
+							white-space: nowrap;
 						}
 						.delete {
 							font-size: 50upx;
+							width: 50upx;
 						}
 					}
 					.goods-item-yh {
@@ -449,6 +466,15 @@
 			border-top-right-radius: 20upx;
 			.quan-con {
 				padding: 20upx;
+				.un-use-box {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+					background-color: #fff;
+					margin-bottom: 30upx;
+					padding: 20upx;
+				}
 			}
 		}
 		.paytype-box {
