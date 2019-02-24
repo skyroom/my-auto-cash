@@ -70,5 +70,4 @@ module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
 	dateUtils: dateUtils,
-	gTime: 120000,
 }

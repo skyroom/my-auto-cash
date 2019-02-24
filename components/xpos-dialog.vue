@@ -27,11 +27,11 @@
 		props: {
 			title: {
 				type: String,
-				default: '标题'
+				default: ''
 			},
 			message: {
 				type: String,
-				default: '你怎么会看到我^_^'
+				default: ''
 			},
 			// 内容对齐方式 center | left | right
 			messageAlign: {

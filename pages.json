@@ -13,7 +13,10 @@
 		{
 			"path": "pages/choose/choose",
 			"style": {
-				"navigationBarTitleText": "用户选择"
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
@@ -34,7 +37,10 @@
 		{
 			"path": "pages/payResult/payResult",
 			"style": {
-				"navigationBarTitleText": "支付结果"
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
@@ -69,6 +75,11 @@
 			{
 				"name": "quan", //模式名称
 				"path": "pages/quan/quan", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			},
+			{
+				"name": "choose", //模式名称
+				"path": "pages/choose/choose", //启动页面，必选
 				"query": "" //启动参数，在页面的onLoad函数里面得到
 			}
 		]

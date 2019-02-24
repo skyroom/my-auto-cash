@@ -7,14 +7,19 @@
 		<view class="user-img-con" hover-class="hover-class">
 			<image @click="goCartPageHandler" mode="widthFix" src="/static/choose/user_normal.png"></image>
 		</view>
+		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
 	</view>
 </template>
 
 <script>
-	import globalTimer from '../../components/global-timer.vue';
+	import xposCommonMixins from '../../components/xpos-common-mixins.vue';
+	import xposCancel from '../../components/xpos-cancel.vue';
 	
 	export default {
-		mixins: [globalTimer],
+		mixins: [xposCommonMixins],
+		components: {
+			xposCancel
+		},
 		data() {
 			return {
 
@@ -28,7 +33,10 @@
 			}
 		},
 		onHide() {
-			clearTimeout(this.gTimer);
+			this.stopCancelDuration();
+		},
+		onReady() {
+			this.startCancelDuration();
 		}
 	}
 </script>

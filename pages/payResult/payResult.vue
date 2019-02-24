@@ -14,14 +14,19 @@
 			</view>
 			<view class="mt20 button" hover-class="hover-class">重新支付</view>
 		</view>
+		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
 	</view>
 </template>
 
 <script>
-	import globalTimer from '../../components/global-timer.vue';
+	import xposCommonMixins from '../../components/xpos-common-mixins.vue';
+	import xposCancel from '../../components/xpos-cancel.vue';
 	
 	export default {
-		mixins: [globalTimer],
+		mixins: [xposCommonMixins],
+		components: {
+			xposCancel
+		},
 		data() {
 			return {
 				showError: false,
@@ -36,7 +41,10 @@
 			}
 		},
 		onHide() {
-			clearTimeout(this.gTimer);
+			this.stopCancelDuration();
+		},
+		onReady() {
+			this.startCancelDuration();
 		}
 	}
 </script>

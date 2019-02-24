@@ -4,10 +4,12 @@
 			class="goods-scroll" 
 			scroll-y="scrollY">
 			<view class="goods-item-box">
-				<view class="back-con">
-					<view class="button small cancel-btn" hover-class="hover-class" @click="goChoosePageHandler">取消交易(<text>120</text>秒)</view>
+				<view class="member-info">
+					<view class="user-name-con">
+						<text class="title">会员：</text>
+						<text class="user-name-text">张三张三是</text>
+					</view>
 				</view>
-				
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
 					<view :class="{ 'goods-item': true, 'first-goods': index == 0 && goodsItemMove}">
 						<view class="goods-item-con">
@@ -37,10 +39,6 @@
 				
 			</view>
 			<view class="order-detail-fixed">
-				<!-- <view class="user-name-con">
-					<text class="title">会员：</text>
-					<text class="user-name-text">张三张三是</text>
-				</view> -->
 				<view class="order-detail-con">
 					<view class="order-detail-left">
 						<view class="left-top" @click="showGoodsPopHandler">
@@ -102,6 +100,7 @@
 				¥22.00
 			</view>
 		</view>
+		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
 	</view>
 </template>
 
@@ -109,13 +108,15 @@
 	import { mapGetters, mapActions } from 'vuex';
 	import xposPopup from '../../components/xpos-popup.vue';
 	import xposQuanItem from '../../components/xpos-quan-item.vue';
-	import globalTimer from '../../components/global-timer.vue';
+	import xposCommonMixins from '../../components/xpos-common-mixins.vue';
+	import xposCancel from '../../components/xpos-cancel.vue';
 	
 	export default {
-		// mixins: [globalTimer],
+		mixins: [xposCommonMixins],
 		components: {
 			xposPopup,
-			xposQuanItem
+			xposQuanItem,
+			xposCancel
 		},
 		data() {
 			return {
@@ -212,27 +213,33 @@
 						this.showGoodsPop = false;
 						this.goodsPopMove = false;
 						this.addGoodsHandler();
-					}, 500);
-				}, 1000);
+					}, 200);
+				}, 500);
 			},
 			addGoodsHandler() {
 				this.addGoodsIntoList();
 				this.goodsItemMove = true;
 				setTimeout(() =>{
 					this.goodsItemMove = false;
-				}, 500);
+				}, 200);
 			},
 		},
 		onLoad() {
+			console.log('cart onLoad');
 			this.getMerchantGoodsList()
 			.then((data) => {
 				// console.log('data is', JSON.stringify(data));
 			});
 		},
 		onUnload(){
+			console.log('cart onUnload');
 		},
 		onHide() {
-			// clearTimeout(this.gTimer);
+			console.log('cart onHide');
+			this.stopCancelDuration();
+		},
+		onReady() {
+			this.startCancelDuration();
 		}
 	}
 </script>
@@ -251,17 +258,17 @@
 		.goods-item-box {
 			padding-top: var(--status-bar-height);
 			padding-bottom: 150upx;
-			.back-con {
-				text-align: right;
-				padding-top: 25upx;
-				padding-right: 20upx;
-				padding-bottom: 25upx;
-				.cancel-btn {
-					color: #fff;
-					border: 1px solid #fff;
+			.member-info {
+				padding-bottom: 30upx;
+				.user-name-con {
+					background: linear-gradient(left, #6de42b, #479e17);
+					// background-color: #479e17;
 					display: inline-block;
-					background-color: transparent;
-					font-size: 28upx;
+					padding: 20upx 40upx 20upx 40upx;
+					border-bottom-right-radius: 35upx; 
+					border-top-right-radius: 35upx; 
+					color: #fff;
+					font-size: 30upx;
 				}
 			}
 			.goods-item {
@@ -279,7 +286,7 @@
 					opacity: 0.1;
 					height: 0;
 					transform: scale(.1, .1);
-					animation: goodItemMove .5s linear;
+					animation: goodItemMove .2s linear;
 				}
 				.goods-item-con {
 					padding: 20upx;
@@ -355,15 +362,6 @@
 			box-sizing: border-box;
 			/* box-shadow: darkgrey 0 0 25upx 5upx; */
 			// border-top: 2px solid #5eaf31;
-			.user-name-con {
-				background: linear-gradient(left, #6de42b, #5daf30);
-				display: inline-block;
-				padding: 20upx 40upx 20upx 40upx;
-				border-bottom-right-radius: 35upx; 
-				border-top-right-radius: 35upx; 
-				color: #fff;
-				font-size: 30upx;
-			}
 			.order-detail-con {
 				display: flex;
 				flex-direction: row;
@@ -488,7 +486,7 @@
 			box-shadow: 0 0 30upx rgba(0, 0, 0, .1);
 			padding: 10upx;
 			// transform-origin: top left;
-			transition: all .5s linear;
+			transition: all .2s linear;
 			&.goods-pop-move {
 				top: -50%;
 				// left: -45%;
