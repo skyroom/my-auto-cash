@@ -1,16 +1,16 @@
 <template>
-	<view class="login-page-box page-box">
+	<view class="login-page-box page-box" style="background: url(../../static/bgx.jpg);background-size:cover;">
 		<view class="login-con">
 			<view class="top">
 				<view class="qr-img-con">
-					<image src="../../static/qr.png" mode="scaleToFill"></image>
+					<image src="../../static/qr.png" mode="widthFix"></image>
 				</view>
 			</view>
 			<view class="bottom">
 				<view class="title">
 					微信扫码享受会员权益
 				</view>
-				<view class="mt20 button" @click="goBackPageHandler" hover-class="hover-class">返回</view>
+				<view class="button" @click="goBackPageHandler" hover-class="hover-class">返回</view>
 				<!-- <view class="mask mask-left"></view> -->
 				<!-- <view class="mask mask-right"></view> -->
 			</view>
@@ -51,8 +51,8 @@
 
 <style lang="less">
 	@import '~@/common/var.less';
-	// @backgroundColor: linear-gradient(top, #6de42b, #479e17);
-	@backgroundColor: #58be20;
+	@backgroundColor: linear-gradient(top, #6de42b, #479e17);
+	// @backgroundColor: #58be20;
 	@loginBoxShadowColor: #444;
 	
 	.login-page-box {
@@ -60,7 +60,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: @backgroundColor;
+		background: @backgroundColor;
 		.login-con {
 			display: flex;
 			flex-direction: column;
@@ -74,7 +74,7 @@
 			box-shadow:0upx 0upx 0upx transparent,   
                        0upx 0upx 0upx transparent,  
                        0upx 0upx 0upx transparent, 
-                       0upx 20upx 50upx @loginBoxShadowColor;
+                       0upx 10upx 50upx @loginBoxShadowColor;
 			position: relative;
 			.title {
 				text-align: center;
@@ -91,9 +91,9 @@
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				color: #fff;
-				background-image: radial-gradient(circle at left bottom, transparent, transparent 20upx, #fff 21upx),
-								radial-gradient(circle at right bottom, transparent, transparent 20upx, #fff 21upx);
+// 				background-image: radial-gradient(circle at left bottom, #54B61E, #54B61E 15upx, transparent 16upx),
+// 								radial-gradient(circle at right bottom, red, red 15upx, transparent 16upx);
+				background-color: #fff;
 				.title {
 					padding: 20upx 0;
 				}
@@ -102,6 +102,9 @@
 					padding: 60upx;
 					width: 100%;
 					flex: 1;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 					image {
 						width: 100%;
 					}
@@ -120,6 +123,9 @@
 				position: relative;
 				view {
 					width: 100%;
+				}
+				.title {
+					margin-bottom: 10%;
 				}
 				.mask {
 					position: absolute;
