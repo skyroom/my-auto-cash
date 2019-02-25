@@ -1,6 +1,6 @@
 <template>
 	<view class="cancel-box">
-		<view class="button cancel-btn" hover-class="hover-class" @click="showConfirmHandler">
+		<view class="cancel-btn" hover-class="hover-class" @click="showConfirmHandler">
 			<text>
 				取消交易(
 				<text v-text="cancelDuration"></text>
@@ -70,16 +70,16 @@
 	.cancel-box {
 		position: fixed;
 		top: var(--status-bar-height);
-		right: 20upx;
+		right: 0;
 		.cancel-btn {
-			color: #fff;
-			// border: 1px solid #fff;
+			background: linear-gradient(right, #6de42b, #479e17);
+			// background-color: #479e17;
 			display: inline-block;
-			background-color: #479e17;
-			// background: linear-gradient(left, #6de42b, #479e17);
+			padding: 20upx 40upx 20upx 40upx;
+			border-bottom-left-radius: 35upx; 
+			border-top-left-radius: 35upx; 
+			color: #fff;
 			font-size: 30upx;
-			// border-radius: 35upx;
-			padding: 0 40upx;
 		}
 	}
 </style>

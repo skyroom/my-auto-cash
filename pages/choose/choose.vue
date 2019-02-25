@@ -1,11 +1,11 @@
 <template>
 	<view class="choose-page-box page-box">
 		<view class="user-img-con" hover-class="hover-class">
-			<image @click="goCartPageHandler" mode="widthFix" src="/static/choose/user_vip.png"></image>
+			<image @click="goLoginPageHandler" mode="widthFix" src="../../static/choose/user_vip.png"></image>
 		</view>
 		<view class="split"></view>
 		<view class="user-img-con" hover-class="hover-class">
-			<image @click="goCartPageHandler" mode="widthFix" src="/static/choose/user_normal.png"></image>
+			<image @click="goCartPageHandler" mode="widthFix" src="../../static/choose/user_normal.png"></image>
 		</view>
 		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
 	</view>
@@ -29,6 +29,11 @@
 			goCartPageHandler() {
 				uni.navigateTo({
 					url: '/pages/cart/cart'
+				});
+			},
+			goLoginPageHandler() {
+				uni.navigateTo({
+					url: '/pages/login/login'
 				});
 			}
 		},

@@ -65,24 +65,26 @@
 			:type="popType"
 			@hidePopup="hidePopup"
 			>
-			<scroll-view class="quan-box" scroll-y>
-				<view class="quan-con">
-					<view class="un-use-box">
-						<view class="un-use-text">不使用优惠券</view>
-						<view class="radio-con">
-							<text class="xpos-font xpos-radio kong">&#xecee;</text>
-							<text class="xpos-font xpos-radio checked">&#xec3b;</text>
+			<view class="quan-pop-box">
+				<scroll-view class="quan-box" scroll-y>
+					<view class="quan-con">
+						<view class="un-use-box">
+							<view class="un-use-text">不使用优惠券</view>
+							<view class="radio-con">
+								<text class="xpos-font xpos-radio kong">&#xecee;</text>
+								<text class="xpos-font xpos-radio checked">&#xec3b;</text>
+							</view>
 						</view>
+						<xpos-quan-item></xpos-quan-item>
+						<view class="white-block"></view>
+						<xpos-quan-item></xpos-quan-item>
+						<view class="white-block"></view>
+						<xpos-quan-item :isUnuse="true"></xpos-quan-item>
+						<view class="white-block"></view>
+						<xpos-quan-item :isUnuse="true"></xpos-quan-item>
 					</view>
-					<xpos-quan-item></xpos-quan-item>
-					<view class="white-block"></view>
-					<xpos-quan-item></xpos-quan-item>
-					<view class="white-block"></view>
-					<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-					<view class="white-block"></view>
-					<xpos-quan-item :isUnuse="true"></xpos-quan-item>
-				</view>
-			</scroll-view>
+				</scroll-view>
+			</view>
 		</xpos-popup>
 		<xpos-popup
 			:show="showPayTypePop"
@@ -458,22 +460,25 @@
 			}
 		}
 		/* 优惠券样式 */
-		.quan-box {
-			height: 600upx;
-			background-color: #f5f5f5;
-			box-sizing: border-box;
-			border-top-left-radius: 20upx;
-			border-top-right-radius: 20upx;
-			.quan-con {
-				padding: 20upx;
-				.un-use-box {
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					align-items: center;
-					background-color: #fff;
-					margin-bottom: 30upx;
-					padding: 20upx;
+		.quan-pop-box {
+			padding-top: 20upx;
+			.quan-box {
+				height: 600upx;
+				background-color: #f5f5f5;
+				box-sizing: border-box;
+				// border-top-left-radius: 20upx;
+				// border-top-right-radius: 20upx;
+				.quan-con {
+					padding: 20upx 20upx 20upx 20upx;
+					.un-use-box {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						align-items: center;
+						background-color: #fff;
+						margin-bottom: 30upx;
+						padding: 20upx;
+					}
 				}
 			}
 		}
