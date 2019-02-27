@@ -5,11 +5,12 @@
 			scroll-y="scrollY">
 			<view class="goods-item-box">
 				<view class="member-info">
-					<view class="user-name-con">
+					<view class="user-name-con" @click="hideKeyHandler">
 						<text class="title">会员：</text>
 						<text class="user-name-text">张三张三是</text>
 					</view>
 				</view>
+				<input class="uni-input" focus placeholder="自动获得焦点" @focus="inputOnFocusHandler"/>
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
 					<view :class="{ 'goods-item': true, 'first-goods': index == 0 && goodsItemMove}">
 						<view class="goods-item-con">
@@ -232,6 +233,13 @@
 					this.goodsItemMove = false;
 				}, 200);
 			},
+			inputOnFocusHandler(e) {
+				console.log('focus', e.detail.value);
+				uni.hideKeyboard();
+			},
+			hideKeyHandler() {
+				uni.hideKeyboard();
+			},
 		},
 		onLoad() {
 			console.log('cart onLoad');
@@ -239,9 +247,28 @@
 			.then((data) => {
 				// console.log('data is', JSON.stringify(data));
 			});
+// 			uni.scanCode({
+// 				onlyFromCamera: true,
+// 				success: function (res) {
+// 					console.log('条码类型：' + res.scanType);
+// 					console.log('条码内容：' + res.result);
+// 					uni.showModal({
+// 						title: '条码类型 ' + res.scanType,
+// 						content: '条码内容 ' + res.result,
+// 						success: function (res) {
+// 							if (res.confirm) {
+// 								console.log('用户点击确定');
+// 							} else if (res.cancel) {
+// 								console.log('用户点击取消');
+// 							}
+// 						}
+// 					});
+// 				}
+// 			});
 		},
 		onUnload(){
 			console.log('cart onUnload');
+			this.stopCancelDuration();
 		},
 		onHide() {
 			console.log('cart onHide');
@@ -249,7 +276,7 @@
 		},
 		onReady() {
 			this.startCancelDuration();
-		}
+		},
 	}
 </script>
 
