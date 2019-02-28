@@ -8,6 +8,7 @@
 			<image @click="goCartPageHandler" mode="widthFix" src="../../static/choose/user_normal.png"></image>
 		</view>
 		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
+		<!-- <view class="screen-all" @click="screenClickHandler"></view> -->
 	</view>
 </template>
 
@@ -35,6 +36,9 @@
 				uni.navigateTo({
 					url: '/pages/login/login'
 				});
+			},
+			screenClickHandler(e) {
+				console.log('111', e);
 			}
 		},
 		onHide() {
@@ -70,5 +74,13 @@
 
 	.split {
 		height: 10%;
+	}
+	
+	.screen-all {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 	}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<view class="cart-page-box page-box" style="background: url(../../static/bgx.jpg);background-size:cover;">
+	<view class="cart-page-box page-box" style="background: url(../../static/bgx.jpg);background-size:cover;" @click="allClickHandler">
 		<scroll-view 
 			class="goods-scroll" 
 			scroll-y="scrollY">
@@ -10,7 +10,9 @@
 						<text class="user-name-text">张三张三是</text>
 					</view>
 				</view>
-				<input class="uni-input" focus placeholder="自动获得焦点" @focus="inputOnFocusHandler"/>
+				<input class="uni-input" :focus="isFocus" type="text" placeholder="自动获得焦点" @focus="inputOnFocusHandler" @blur="blurHandler"/>
+				<!-- <button>失去焦点</button> -->
+				<!-- <button @click="focusHandler">获取焦点</button> -->
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
 					<view :class="{ 'goods-item': true, 'first-goods': index == 0 && goodsItemMove}">
 						<view class="goods-item-con">
@@ -144,6 +146,8 @@
 				translateY: '',
 				goodsPopMove: false,
 				goodsItemMove: false,
+				isFocus: false,
+				focusTimer: '',
 			};
 		},
 		computed: {
@@ -234,11 +238,25 @@
 				}, 200);
 			},
 			inputOnFocusHandler(e) {
-				console.log('focus', e.detail.value);
+				// console.log('focus', e.detail.value);
 				uni.hideKeyboard();
 			},
 			hideKeyHandler() {
 				uni.hideKeyboard();
+			},
+			focusHandler() {
+				this.isFocus = true;
+			},
+			blurHandler() {
+				console.log('失去焦点');
+				this.isFocus = false;
+// 				this.focusTimer = setTimeout(() => {
+// 					this.isFocus = true;
+// 				}, 0);
+			},
+			allClickHandler(e) {
+				console.log('点击全局');
+				this.isFocus = true;
 			},
 		},
 		onLoad() {
@@ -276,7 +294,26 @@
 		},
 		onReady() {
 			this.startCancelDuration();
+			this.hideKeyHandler();
+			this.isFocus = true;
 		},
+// 		updated(e) {
+// 			console.log(e);
+// 		},
+// 		beforeUpdate(e) {
+// 			if (this.isFocus == false) {
+// 				this.isFocus = true;
+// 			}
+// 		},
+// 		watch: {
+// 			// 如果 `question` 发生改变，这个函数就会运行
+// 			isFocus (newIsFocus, oldIsFocus) {
+// 				console.log(newIsFocus);
+// 				if (newIsFocus == false) {
+// 					this.isFocus = true;
+// 				}
+// 			}
+// 		},
 	}
 </script>
 
