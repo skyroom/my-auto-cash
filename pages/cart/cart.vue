@@ -10,7 +10,7 @@
 						<text class="user-name-text">张三张三是</text>
 					</view>
 				</view>
-				<input class="uni-input" :focus="isFocus" type="text" placeholder="自动获得焦点" @focus="inputOnFocusHandler" @blur="blurHandler"/>
+				<!-- <input class="uni-input" :focus="isFocus" type="text" placeholder="自动获得焦点" @focus="inputOnFocusHandler" @blur="blurHandler"/> -->
 				<!-- <button>失去焦点</button> -->
 				<!-- <button @click="focusHandler">获取焦点</button> -->
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
@@ -265,24 +265,27 @@
 			.then((data) => {
 				// console.log('data is', JSON.stringify(data));
 			});
-// 			uni.scanCode({
-// 				onlyFromCamera: true,
-// 				success: function (res) {
-// 					console.log('条码类型：' + res.scanType);
-// 					console.log('条码内容：' + res.result);
-// 					uni.showModal({
-// 						title: '条码类型 ' + res.scanType,
-// 						content: '条码内容 ' + res.result,
-// 						success: function (res) {
-// 							if (res.confirm) {
-// 								console.log('用户点击确定');
-// 							} else if (res.cancel) {
-// 								console.log('用户点击取消');
-// 							}
-// 						}
-// 					});
-// 				}
-// 			});
+			// #ifdef APP-PLUS
+			var main = plus.android.runtimeMainActivity();//获取activity  
+			var context = plus.android.importClass('android.content.Context'); //上下文  
+			var receiver = plus.android.implements('io.dcloud.feature.internal.reflect.BroadcastReceiver',{  
+			onReceive : doReceive });  
+			var IntentFilter = plus.android.importClass('android.content.IntentFilter');  //引入过滤器  
+			var Intent = plus.android.importClass('android.content.Intent');  
+			var filter = new IntentFilter();  
+			filter.addAction("com.zkc.scancode");//监听扫描  
+			main.registerReceiver(receiver,filter);//注册监听  
+
+			function doReceive(context, intent) {   
+				plus.android.importClass(intent);//通过intent实例引入intent类，方便以后的‘.’操作  
+				var Number = intent.getStringExtra("code");   
+				uni.showToast({
+					title: Number,
+					duration: 4000
+				});
+				// main.unregisterReceiver(receiver);//取消监听  
+			}
+			// #endif
 		},
 		onUnload(){
 			console.log('cart onUnload');
