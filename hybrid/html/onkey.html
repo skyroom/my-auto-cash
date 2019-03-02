@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+function listen(){
+    document.addEventListener("keyup",function(e){
+     var x= document.getElementById("c");
+     x.innerText += String.fromCharCode(e.keyCode);
+});
+}
+</script>
+</head>
+<body onload="listen();">
+	<h1>我是onkey页面</h1>
+</body>
+<div id="c">
+</div>
+</body>
+</html>

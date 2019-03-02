@@ -13,7 +13,8 @@
             "Push" : {},
             "Share" : {},
             "Speech" : {},
-            "VideoPlayer" : {}
+            "VideoPlayer" : {},
+			"Webview": {}
         },
         /* 应用发布信息 */
         "distribute" : {

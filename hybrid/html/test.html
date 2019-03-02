@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>测试网页</title>
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+		我是测试
+		<input type="text">
+		<button class="btn" type="button" data-action="switchTab">switchTab</button>
+	</body>
+	<!-- uni 的 SDK -->
+	<script type="text/javascript">
+		window.msg = '';
+		document.onkeydown=function(event) {
+			var e = event || window.event || arguments.callee.caller.arguments[0];
+			console.log(JSON.stringify(e.keyCode));
+			window.postMessage('test页面', '*');
+			// alert('键盘事件-键盘码'+e.keyCode);
+			// plus.webview.currentWebview().opener();
+		};
+	</script>
+</html>

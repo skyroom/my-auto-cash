@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Webview Example</title>
+	<script type="text/javascript">
+var embed=null;
+// H5 plus事件处理
+function plusReady(){
+	embed=plus.webview.create('http://m.weibo.cn/u/3196963860', '',{top:'46px',bottom:'0px'});
+	plus.webview.currentWebview().append(embed);
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener('plusready', plusReady, false);
+}
+	</script>
+	</head>
+	<body>
+		在Webview窗口中添加子窗口
+		<button onclick="plus.webview.currentWebview().close();">Back</button>
+	</body>
+</html>

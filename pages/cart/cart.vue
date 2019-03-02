@@ -13,6 +13,9 @@
 				<!-- <input class="uni-input" :focus="isFocus" type="text" placeholder="自动获得焦点" @focus="inputOnFocusHandler" @blur="blurHandler"/> -->
 				<!-- <button>失去焦点</button> -->
 				<!-- <button @click="focusHandler">获取焦点</button> -->
+				<!-- <view class="web-view-box">
+					<web-view src="../../hybrid/html/local.html"></web-view>
+				</view> -->
 				<block v-for="(goods, index) in merchantGoodsList" :key="index">
 					<view :class="{ 'goods-item': true, 'first-goods': index == 0 && goodsItemMove}">
 						<view class="goods-item-con">
@@ -148,6 +151,7 @@
 				goodsItemMove: false,
 				isFocus: false,
 				focusTimer: '',
+				childWin: '',
 			};
 		},
 		computed: {
@@ -257,6 +261,7 @@
 			allClickHandler(e) {
 				console.log('点击全局');
 				this.isFocus = true;
+				// this.childWin.show(); // 显示窗口
 			},
 		},
 		onLoad() {
@@ -265,27 +270,6 @@
 			.then((data) => {
 				// console.log('data is', JSON.stringify(data));
 			});
-			// #ifdef APP-PLUS
-			var main = plus.android.runtimeMainActivity();//获取activity  
-			var context = plus.android.importClass('android.content.Context'); //上下文  
-			var receiver = plus.android.implements('io.dcloud.feature.internal.reflect.BroadcastReceiver',{  
-			onReceive : doReceive });  
-			var IntentFilter = plus.android.importClass('android.content.IntentFilter');  //引入过滤器  
-			var Intent = plus.android.importClass('android.content.Intent');  
-			var filter = new IntentFilter();  
-			filter.addAction("com.zkc.scancode");//监听扫描  
-			main.registerReceiver(receiver,filter);//注册监听  
-
-			function doReceive(context, intent) {   
-				plus.android.importClass(intent);//通过intent实例引入intent类，方便以后的‘.’操作  
-				var Number = intent.getStringExtra("code");   
-				uni.showToast({
-					title: Number,
-					duration: 4000
-				});
-				// main.unregisterReceiver(receiver);//取消监听  
-			}
-			// #endif
 		},
 		onUnload(){
 			console.log('cart onUnload');
@@ -299,6 +283,58 @@
 			this.startCancelDuration();
 			this.hideKeyHandler();
 			this.isFocus = true;
+			
+			// #ifdef  APP-PLUS
+			console.log('123eee');
+// 			this.childWin = plus.webview.create('/hybrid/html/onkey.html', '', {
+// 				width: '50%',
+// 				height: '30%',
+// 				// top: '-50px',
+// 				margin: 'auto',
+// 				zindex: 1000,
+// 			});
+// 			this.childWin.show(); // 显示窗口
+// 			plus.webview.currentWebview().addEventListener('message', (c) => {
+// 				console.log(c);
+// 			})
+			// console.log(JSON.stringify(plus.webview.currentWebview()));
+			// console.log(plus.webview.currentWebview());
+			// 监听键按下事件
+			plus.key.addEventListener("volumeupbutton",function(e){
+				console.log("volumeupbutton: "+e.keyCode);
+				uni.showToast({
+					title: "volumeupbutton: "+e.keyCode,
+					duration: 2000
+				});
+			},true);
+			// 监听键松开事件
+// 			plus.key.addEventListener("keyup",function(e){
+// 				console.log("keyup: "+e.keyCode);
+// 				uni.showToast({
+// 					title: "keyup: "+e.keyCode,
+// 					duration: 2000
+// 				});
+// 			},true);
+// 			// 监听长按键事件
+// 			plus.key.addEventListener("longpressed",function(e){
+// 				console.log("longpressed: "+e.keyCode);
+// 				uni.showToast({
+// 					title: "longpressed: "+e.keyCode,
+// 					duration: 2000
+// 				});
+// 			},true);
+// 			plus.key.addEventListener("backbutton",function(e){
+// 				console.log("backbutton: "+e.keyCode);
+// 				uni.showToast({
+// 					title: "backbutton: "+e.keyCode,
+// 					duration: 2000
+// 				});
+// 			},true);
+// 			plus.key.addEventListener("keydown", function(e){
+// 				console.log(e)
+// 				alert( "keydown Key pressed!", String.fromCharCode(e.keyCode));
+// 			});
+			// #endif
 		},
 // 		updated(e) {
 // 			console.log(e);
@@ -308,16 +344,8 @@
 // 				this.isFocus = true;
 // 			}
 // 		},
-// 		watch: {
-// 			// 如果 `question` 发生改变，这个函数就会运行
-// 			isFocus (newIsFocus, oldIsFocus) {
-// 				console.log(newIsFocus);
-// 				if (newIsFocus == false) {
-// 					this.isFocus = true;
-// 				}
-// 			}
-// 		},
-	}
+
+}
 </script>
 
 <style lang="less">
@@ -639,6 +667,9 @@
 				opacity: 1;
 				transform: scale(1, 1);
 			}
+		}
+		.web-view-box {
+			visibility: hidden;
 		}
 	}
 </style>
