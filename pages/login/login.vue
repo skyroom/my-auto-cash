@@ -67,7 +67,7 @@
 			justify-content: center;
 			align-items: center;
 			background-color: #fff;
-			height: 70%;
+			height: 60%;
 			width: 75%;
 			border-bottom-left-radius: 10upx;
 			border-bottom-right-radius: 10upx;
@@ -145,11 +145,12 @@
 			}
 			.pop-page {
 				background-color: rgba(71, 158, 23, .7);
-				width: 110%;
+				width: 100%;
 				height: 30upx;
 				border-radius: 30upx;
 				position: absolute;
 				top: -18upx;
+				transform: scale(1.1);
 			}
 		}
 	}

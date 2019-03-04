@@ -34,7 +34,7 @@
 		methods: {
 			goChoosePageHandler() {
 				uni.navigateTo({
-					url: '/pages/choose/choose'
+					url: '/pages/cart/cart'
 				});
 			}
 		},
