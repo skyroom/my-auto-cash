@@ -79,7 +79,7 @@
 
 	.uni-popup-bottom {
 		left: 0upx;
-		bottom: 120upx;
+		bottom: 240upx;
 		right: 0upx;
 		/* height: 40%; */
 		border-top-left-radius: 20upx;

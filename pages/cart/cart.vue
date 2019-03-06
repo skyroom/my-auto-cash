@@ -120,19 +120,27 @@
 				¥22.00
 			</view>
 		</view>
-		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
 		<view class="vip-fixed-box">
 			<view class="vip-fixed-con">
 				<view class="vip-box" @click="goToLoginPageHandler">
 					<text class="xpos-font">&#xe693;</text>
 					<text class="ml10">使用会员卡</text>
 				</view>
-				<view class="input-bar-box">
+				<view class="input-bar-box" @click="openBarDialogHandler">
 					<text class="xpos-font">&#xe716;</text>
 					<text class="ml10">输入条形码</text>
 				</view>
 			</view>
 		</view>
+		<bar-dialog 
+			ref="barDialog"
+			@confirmButton="barDialogOnConfirmHander"
+			>
+			<view slot="title">
+				<text class="xpos-font">&#xe716;</text>
+			</view>
+		</bar-dialog>
+		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
 	</view>
 </template>
 
@@ -142,13 +150,18 @@
 	import xposQuanItem from '../../components/xpos-quan-item.vue';
 	import xposCommonMixins from '../../components/xpos-common-mixins.vue';
 	import xposCancel from '../../components/xpos-cancel.vue';
+	import barDialog from './bar-dialog.vue';
+	
+	// 混入
+	import barDialogHandler from './barDialog.js';
 	
 	export default {
-		mixins: [xposCommonMixins],
+		mixins: [xposCommonMixins, barDialogHandler],
 		components: {
 			xposPopup,
 			xposQuanItem,
-			xposCancel
+			xposCancel,
+			barDialog
 		},
 		data() {
 			return {
@@ -285,6 +298,10 @@
 					url: '/pages/login/login'
 				});
 			},
+			openBarDialogHandler() {
+				console.log('dd', this.$refs);
+				this.$refs.barDialog.__show();
+			}
 		},
 		onLoad() {
 			console.log('cart onLoad');

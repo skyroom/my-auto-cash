@@ -8,11 +8,13 @@
 			</text>
 		</view>
 		<xpos-dialog 
-			ref="xdialog"
+			ref="cancelDialog"
 			:title="title"
 			showCancelButton
 			@confirmButton="clickConfirmButtonHandler"
-			></xpos-dialog>
+			>
+			<text slot="title">确定要取消交易吗？</text>
+		</xpos-dialog>
 	</view>
 </template>
 
@@ -41,7 +43,7 @@
 		},
 		methods: {
 			showConfirmHandler() {
-				this.$refs.xdialog.__show();
+				this.$refs.cancelDialog.__show();
 			},
 			clickConfirmButtonHandler() {
 				uni.navigateTo({

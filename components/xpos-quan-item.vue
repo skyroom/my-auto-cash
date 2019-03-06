@@ -1,8 +1,13 @@
 <template>
 	<view :class="['quan-item-con', { unuse: isUnuse }]">
-		<view class="quan-price">
-			<text class="symbol">¥</text>
-			<text class="price">338.2</text>
+		<view class="quan-price-box">
+			<view class="logo-box">
+				<image mode="widthFix" src="../../static/QlifeQmartlogo-1.png"></image>
+			</view>
+			<view class="quan-price-con">
+				<text class="symbol">¥</text>
+				<text class="price">338.2</text>
+			</view>
 		</view>
 		<view class="quan-info">
 			<view class="info-top">
@@ -59,13 +64,9 @@
 	@import '~@/common/var.less';
 	
 	.quan-item-con {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		align-items: stretch;
 		&.unuse {
-			.quan-price {
-				background-color: #aaa;
+			.quan-price-box {
+				// background-color: #aaa;
 			}
 			.quan-info {
 				.info-top {
@@ -77,26 +78,35 @@
 				}
 			}
 		}
-		.quan-price {
-			width: 25%;
+		.quan-price-box {
 			position: relative;
 			color: #fff;
-			background-image: radial-gradient(circle at right top, #f5f5f5, #f5f5f5 15upx, transparent 16upx),
-							radial-gradient(circle at right bottom, #f5f5f5, #f5f5f5 15upx, transparent 16upx);
 			background-color: @theme-color;
 			display: flex;
-			justify-content: center;
+			justify-content: space-between;
 			align-items: center;
+			padding: 20upx 30upx;
+			border-top-left-radius: 15upx;
+			border-top-right-radius: 15upx;
+			
 			&:after {
 				content: '';
 				position: absolute;
-				top: 0upx;
-				bottom: 0upx;
-				left: -10upx;
-				width: 20upx;
-				height: 100%;
-				background: radial-gradient(circle, #f5f5f5, #f5f5f5 8upx, transparent 10upx);
-				background-size: 20upx 20upx;
+				bottom: -10upx;
+				height: 20upx;
+				width: 100%;
+				left: 0upx;
+				background: radial-gradient(circle, #fff, #fff 8upx, transparent 10upx);
+				background-size: 23upx 20upx;
+			}
+			.logo-box {
+				width: 120upx;
+				height: 120upx;
+				image {
+					width: 100%;
+					height: 100%;
+					border-radius: 100%;
+				}
 			}
 			.symbol {
 				font-size: 28upx;
@@ -108,9 +118,10 @@
 		}
 		.quan-info {
 			background-color: #fff;
-			flex: 1;
-			background-image: radial-gradient(circle at left top, #f5f5f5, #f5f5f5 15upx, transparent 16upx),
-							radial-gradient(circle at left bottom, #f5f5f5, #f5f5f5 15upx, transparent 16upx);
+// 			background-image: radial-gradient(circle at left top, #f5f5f5, #f5f5f5 15upx, transparent 16upx),
+// 							radial-gradient(circle at left bottom, #f5f5f5, #f5f5f5 15upx, transparent 16upx);
+			border-bottom-left-radius: 15upx;
+			border-bottom-right-radius: 15upx;
 			.info-top {
 				display: flex;
 				flex-direction: row;

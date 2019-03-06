@@ -2,23 +2,39 @@
 	<view class="dialog" :class="{ 'dialog-visibility':isVisibility }">
 		<view class="dialog-model" v-if="overlay"></view>
 		<view class="dialog-wrap">
-			<view class="dialog-title" v-if="showTitle">
-				<slot name="title"></slot>
-				<text class="xpos-font close-button" v-if="showCloseButton">&#xe7fc;</text>
+			<view class="dialog-title">
+				<text class="xpos-font bar-text">&#xe656;</text>
+				<view class="xpos-font close-button" @click="handleClose" hover-class="hover-class">&#xe7fc;</view>
 			</view>
 			<view class="dialog-content">
-				<view class="dialog-content_message" :style="{'text-align': messageAlign}">{{ message }}</view>		
+				<view class="bar-display">请输入商品条码</view>
+				<view class="bar-input-box">
+					<view class="bar-row">
+						<view class="bar-key" hover-class="hover-class">1</view>
+						<view class="bar-key" hover-class="hover-class">2</view>
+						<view class="bar-key" hover-class="hover-class">3</view>
+					</view>
+					<view class="bar-row">
+						<view class="bar-key" hover-class="hover-class">4</view>
+						<view class="bar-key" hover-class="hover-class">5</view>
+						<view class="bar-key" hover-class="hover-class">6</view>
+					</view>
+					<view class="bar-row">
+						<view class="bar-key" hover-class="hover-class">7</view>
+						<view class="bar-key" hover-class="hover-class">8</view>
+						<view class="bar-key" hover-class="hover-class">9</view>
+					</view>
+					<view class="bar-row">
+						<view class="bar-key" hover-class="hover-class">清空</view>
+						<view class="bar-key" hover-class="hover-class">0</view>
+						<view class="bar-key" hover-class="hover-class">
+							<text class="xpos-font tuige">&#xe659;</text>
+						</view>
+					</view>
+				</view>
 			</view>
-			<view class="dialog-hairline--top dialog-footer">
-				<text class="footer-btn footer-cancel" 
-					v-if="showCancelButton"
-					@click="handleClose"
-				>{{ cancelButtonText }}</text>
-				<text class="footer-btn footer-success" 
-					:class="{'dialog-hairline--left': showCancelButton}" 
-					v-if="showConfirmButton"
-					@click="handleConfirm"
-				>{{ confirmButtonText }}</text>
+			<view class="dialog-footer">
+				<view class="button" hover-class="hover-class" @click="handleClose">确定</view>
 			</view>
 		</view>
 	</view>
@@ -28,10 +44,9 @@
 	export default {
 		
 		props: {
-			// 是否显示title
-			showTitle: {
-				type: Boolean,
-				default: true
+			title: {
+				type: String,
+				default: ''
 			},
 			message: {
 				type: String,
@@ -134,7 +149,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		z-index: 1001;
+		z-index: 10;
 		visibility: hidden;
 		-webkit-transition: 0.15s;
 		&.dialog-visibility {
@@ -149,66 +164,77 @@
 			left: 0;
 			right: 0;
 			bottom: 0;
-			z-index: 2000;
+			z-index: 20;
 		}
 		.dialog-wrap {
-			width: 85%;
+			width: 65%;
 			position: absolute;
 			left: 50%;
 			top: 50%;
 			overflow: hidden;			background: #ffffff;
-			border-radius: 8rpx;
+			border-radius: 8upx;
 			-webkit-transform: translate3d(-50%, -50%, 0);
 			transform: translate3d(-50%, -50%, 0); 
 			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
-			z-index: 5000;
+			z-index: 50;
+			padding: 15upx;
 			.dialog-title {
 				font-weight: 500;
-				padding-top: 50rpx;
-				text-align: center;
-				color: #303133;
 				position: relative;
+				padding: 15upx 0;
+				.bar-text {
+					font-size: 40upx;
+					transform: scaleX(1.5);
+				}
 				.close-button {
 					position: absolute;
-					top: 0;
-					right: 0;
-					font-size: 35upx;
+					top: 10upx;
+					right: 10upx;
+					font-size: 40upx;
 				}
 			}
 			.dialog-content {
-				.dialog-content_message {
-					padding: 30rpx;
-					font-size: 30rpx;
-					line-height: 1.5;
-					overflow-y: auto;
-					-webkit-overflow-scrolling: touch;
-					color: #606266;
+				color: #666;
+				font-size: 30upx;
+				.bar-display {
+					border: 1upx solid #ddd;
+					border-radius: 8upx;
+					text-align: center;
+					font-size: 30upx;
+					padding: 15upx 0;
 				}
-			}
-			.dialog-hairline--top::after {
-				border-top-width: 1px;
+				.bar-input-box {
+					margin: 20upx 0;
+					.bar-row {
+						display: flex;
+						flex-direction: row;
+						justify-content: flex-start;
+						align-items: center;
+						margin-top: 10upx;
+						:first-child {
+							margin-top: 0;
+						}
+						.bar-key {
+							flex: 1;
+							margin-left: 5upx;
+							text-align: center;
+							border: 1upx solid #ddd;
+							border-radius: 8upx;
+							padding: 20upx 0;
+							&:first-child {
+								margin-left: 0;
+							}
+							.tuige {
+								// font-size: 35upx;
+							}
+						}
+					}
+				}
 			}
 			.dialog-footer {
-				overflow: hidden;
-				position: relative;
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				.footer-btn {
-					height: 100rpx;
-					font-size: 32rpx;
-					text-align: center;
-					line-height: 100rpx;
-				}
-				.footer-success {
-					width: 100%;
-					color: #1989fa;
-				}
-				.footer-cancel {
-					width: 100%;
-					color: #303133;
+				.button {
+					font-size: 30upx;
 				}
 			}
 		}
