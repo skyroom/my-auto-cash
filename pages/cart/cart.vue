@@ -43,34 +43,88 @@
 					</view>
 					<view class="white-block"></view>
 				</block>
-				
 			</view>
-			<view class="order-detail-fixed">
-				<view class="order-detail-con">
-					<view class="order-detail-left">
-						<view class="left-top" @click="showGoodsPopHandler">
-							<view class="left-top-price">
-								<text class="total-price">¥90.90</text>
-							</view>
-							<view class="left-top-amount">
-								<text class="total-amount">(共<text>5</text>件)</text>
-							</view>
+		</scroll-view>
+		
+		<!-- 底部固定按钮 -->
+		<view class="order-detail-fixed">
+			<view class="order-detail-con">
+				<view class="order-detail-left">
+					<view class="left-top" @click="showGoodsPopHandler">
+						<view class="left-top-price">
+							<text class="total-price">¥90.90</text>
 						</view>
-						<view class="left-bottom">
-							<text class="yh">已优惠：<text>¥17.70</text></text>
+						<view class="left-top-amount">
+							<text class="total-amount">(共<text>5</text>件)</text>
 						</view>
 					</view>
-					<view class="order-detail-right">
-						<!-- <view class="quan" hover-class="hover-class" @click="openQuanHandler">
-							<text class="xpos-font">&#xe6b8;</text>
-						</view> -->
-						<view class="confirm-order-btn" hover-class="hover-class" @click="goToQuanPageHandler">
-							<text>去结算</text>
-						</view>
+					<view class="left-bottom">
+						<text class="yh">已优惠：<text>¥17.70</text></text>
+					</view>
+				</view>
+				<view class="order-detail-right">
+					<view class="quan" hover-class="hover-class" @click="openQuanHandler">
+						<text class="xpos-font">&#xe6b8;</text>
+					</view>
+					<view class="confirm-order-btn" hover-class="hover-class" @click="goToQuanPageHandler">
+						<text>去结算</text>
 					</view>
 				</view>
 			</view>
-		</scroll-view>
+		</view>
+		
+		<!-- 扫码支付 -->
+		<xpos-popup
+			:show="showPayTypePop"
+			type="middle"
+			@hidePopup="hidePayTypePopup"
+			>
+			<view class="paytype-box">
+				<view class="smzf-con">
+					<text class="xpos-font">&#xe612;</text>
+				</view>
+				<view class="paytype-text" hover-class="hover-class" @click="goPayResultPageHandler">请扫描微信或支付宝支付码完成支付</view>
+			</view>
+		</xpos-popup>
+		
+		<!-- 商品简略信息 -->
+		<view :class="{'goods-pop-box':true, 'goods-pop-move': goodsPopMove}" v-if="showGoodsPop" :animation="goodsPopAnimationData">
+			<view class="goods-img-pop">
+				<image src="../../static/kele.png" mode="scaleToFill"></image>
+			</view>
+			<view class="goods-title-pop">
+				我是商品名称
+			</view>
+			<view class="goods-price-pop">
+				¥22.00
+			</view>
+		</view>
+		
+		<!-- 会员登录 -->
+		<view class="vip-fixed-box">
+			<view class="vip-fixed-con">
+				<view class="vip-box" @click="goToLoginPageHandler">
+					<text class="xpos-font">&#xe693;</text>
+					<text class="ml10">使用会员卡</text>
+				</view>
+				<view class="input-bar-box" @click="openBarDialogHandler">
+					<text class="xpos-font">&#xe716;</text>
+					<text class="ml10">输入条形码</text>
+				</view>
+			</view>
+		</view>
+		
+		<!-- 输入条形码 -->
+		<bar-dialog 
+			ref="barDialog"
+			@confirmButton="barDialogOnConfirmHander"
+			>
+			<view slot="title">
+				<text class="xpos-font">&#xe716;</text>
+			</view>
+		</bar-dialog>
+		
+		<!-- 优惠券 -->
 		<xpos-popup
 			:show="showPopupBottom"
 			:type="popType"
@@ -97,49 +151,8 @@
 				</scroll-view>
 			</view>
 		</xpos-popup>
-		<xpos-popup
-			:show="showPayTypePop"
-			type="middle"
-			@hidePopup="hidePayTypePopup"
-			>
-			<view class="paytype-box">
-				<view class="smzf-con">
-					<text class="xpos-font">&#xe612;</text>
-				</view>
-				<view class="paytype-text" hover-class="hover-class" @click="goPayResultPageHandler">请扫描微信或支付宝支付码完成支付</view>
-			</view>
-		</xpos-popup>
-		<view :class="{'goods-pop-box':true, 'goods-pop-move': goodsPopMove}" v-if="showGoodsPop" :animation="goodsPopAnimationData">
-			<view class="goods-img-pop">
-				<image src="../../static/kele.png" mode="scaleToFill"></image>
-			</view>
-			<view class="goods-title-pop">
-				我是商品名称
-			</view>
-			<view class="goods-price-pop">
-				¥22.00
-			</view>
-		</view>
-		<view class="vip-fixed-box">
-			<view class="vip-fixed-con">
-				<view class="vip-box" @click="goToLoginPageHandler">
-					<text class="xpos-font">&#xe693;</text>
-					<text class="ml10">使用会员卡</text>
-				</view>
-				<view class="input-bar-box" @click="openBarDialogHandler">
-					<text class="xpos-font">&#xe716;</text>
-					<text class="ml10">输入条形码</text>
-				</view>
-			</view>
-		</view>
-		<bar-dialog 
-			ref="barDialog"
-			@confirmButton="barDialogOnConfirmHander"
-			>
-			<view slot="title">
-				<text class="xpos-font">&#xe716;</text>
-			</view>
-		</bar-dialog>
+		
+		<!-- 取消按钮 -->
 		<xpos-cancel></xpos-cancel>
 	</view>
 </template>
