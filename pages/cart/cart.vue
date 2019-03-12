@@ -61,11 +61,11 @@
 						</view>
 					</view>
 					<view class="order-detail-right">
-						<view class="quan" hover-class="hover-class" @click="openQuanHandler">
+						<!-- <view class="quan" hover-class="hover-class" @click="openQuanHandler">
 							<text class="xpos-font">&#xe6b8;</text>
-						</view>
-						<view class="confirm-order-btn" hover-class="hover-class" @click="openPayTypeHandler">
-							<text>确认付款</text>
+						</view> -->
+						<view class="confirm-order-btn" hover-class="hover-class" @click="goToQuanPageHandler">
+							<text>去结算</text>
 						</view>
 					</view>
 				</view>
@@ -140,7 +140,7 @@
 				<text class="xpos-font">&#xe716;</text>
 			</view>
 		</bar-dialog>
-		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
+		<xpos-cancel></xpos-cancel>
 	</view>
 </template>
 
@@ -301,6 +301,11 @@
 			openBarDialogHandler() {
 				console.log('dd', this.$refs);
 				this.$refs.barDialog.__show();
+			},
+			goToQuanPageHandler() {
+				uni.navigateTo({
+					url: '/pages/quan/quan'
+				});
 			}
 		},
 		onLoad() {

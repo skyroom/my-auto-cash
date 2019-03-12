@@ -130,4 +130,8 @@
 			color: @theme-color;
 		}
 	}
+	
+	.white-block-120 {
+		height: 120upx;
+	}
 </style>

@@ -16,7 +16,7 @@
 			</view>
 			<view class="pop-page"></view>
 		</view>
-		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
+		<xpos-cancel></xpos-cancel>
 	</view>
 </template>
 
