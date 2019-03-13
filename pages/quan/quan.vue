@@ -55,7 +55,7 @@
 				<view class="row-info">
 					<text class="label">用券抵扣</text>
 					<view class="select-btn-con">
-						<view class="dk-price">-0.00</view>
+						<view class="dk-price">-500.00</view>
 						<view class="select-btn" hover-class="hover-class" @click="openQuanHandler">
 							选
 						</view>
@@ -100,10 +100,24 @@
 			</view>
 		</xpos-popup>
 		
+		<!-- 扫码支付 -->
+		<xpos-popup
+			:show="showPayTypePop"
+			type="middle"
+			@hidePopup="hidePayTypePopup"
+			>
+			<view class="paytype-box">
+				<view class="smzf-con">
+					<text class="xpos-font">&#xe612;</text>
+				</view>
+				<view class="paytype-text" hover-class="hover-class" @click="goPayResultPageHandler">请扫描微信或支付宝支付码完成支付</view>
+			</view>
+		</xpos-popup>
+		
 		<!-- 底部固定按钮 -->
 		<view class="fixed-btn-con">
-			<view class="back-btn btn">返回购物</view>
-			<view class="pay-btn btn">确认支付</view>
+			<view class="back-btn btn" @click="backHandler">返回购物</view>
+			<view class="pay-btn btn" @click="openPayTypeHandler">确认支付</view>
 		</view>
 	</view>
 </template>
@@ -133,6 +147,7 @@
 				styleType: 'text',
 				showPopupBottom: false, // 优惠券显示
 				popType: 'bottom',
+				showPayTypePop: false, // 显示扫码支付
 			};
 		},
 		methods: {
@@ -186,6 +201,25 @@
 			hidePopup() {
 				this.showPopupBottom = false;
 				// this.scrollY = true;
+			},
+			backHandler() {
+				uni.navigateBack({
+					delta: 1
+				});
+			},
+			// 隐藏扫码支付
+			hidePayTypePopup() {
+				this.showPayTypePop = false;
+				// this.scrollY = true;
+			},
+			openPayTypeHandler() {
+				this.showPayTypePop = true;
+				// this.scrollY = false;
+			},
+			goPayResultPageHandler() {
+				uni.navigateTo({
+					url: '/pages/payResult/payResult'
+				});
 			},
 		},
 		onHide() {
@@ -244,7 +278,7 @@
 						align-items: center;
 						font-size: 27upx;
 						height: 100%;
-						margin-left: 10upx;
+						margin-left: 15upx;
 						.sign-con {
 							flex: 1;
 							background-color: #518241;
@@ -310,7 +344,7 @@
 					flex-direction: row;
 					justify-content: space-between;
 					align-items: center;
-					padding: 13upx 20upx;
+					padding: 15upx 20upx;
 					font-size: 32upx;
 					.label {
 						color: #666;
@@ -328,10 +362,10 @@
 						border-radius: 60upx;
 						font-size: 35upx;
 						.dk-price {
-							padding: 15upx 20upx;
+							padding: 10upx 20upx;
 						}
 						.select-btn {
-							padding: 15upx 30upx 15upx 20upx;
+							padding: 10upx 30upx 10upx 20upx;
 							border-left: 1upx solid #479e17;
 							
 						}
@@ -417,6 +451,20 @@
 			}
 			.back-btn {
 				background: linear-gradient(left, #6de42b, #5daf30);
+			}
+		}
+		/* 扫码支付样式 */
+		.paytype-box {
+			padding: 0 30upx;
+			.paytype-text {
+				line-height: 1.5;
+				font-size: 35upx;
+				color: #333;
+			}
+			.smzf-con {
+				font-size: 150upx;
+				text-align: center;
+				color: #FF6B01;
 			}
 		}
 	}

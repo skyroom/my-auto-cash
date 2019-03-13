@@ -46,7 +46,7 @@
 				this.$refs.cancelDialog.__show();
 			},
 			clickConfirmButtonHandler() {
-				uni.navigateTo({
+				uni.reLaunch({
 					url: '/pages/index/index'
 				});
 			},

@@ -14,7 +14,7 @@ export default {
 				this.cancelDuration = this.cancelDuration - 1;
 				if (this.cancelDuration <= 0) {
 					this.stopCancelDuration();
-					uni.navigateTo({
+					uni.reLaunch({
 						url: '/pages/index/index'
 					});
 				}

@@ -12,7 +12,7 @@
 				<text class="xpos-font close">&#xe621;</text>
 				<text class="ml10">支付失败</text>
 			</view>
-			<view class="mt20 button" hover-class="hover-class">重新支付</view>
+			<view class="mt20 button" hover-class="hover-class" @click="backHandler">重新支付</view>
 		</view>
 		<xpos-cancel :cancelDuration="cancelDuration"></xpos-cancel>
 	</view>
@@ -35,8 +35,13 @@
 		},
 		methods: {
 			goIndexPageHandler() {
-				uni.navigateTo({
+				uni.reLaunch({
 					url: '/pages/index/index'
+				});
+			},
+			backHandler() {
+				uni.navigateBack({
+					delta: 1
 				});
 			}
 		},

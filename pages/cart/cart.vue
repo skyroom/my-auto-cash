@@ -63,9 +63,9 @@
 					</view>
 				</view>
 				<view class="order-detail-right">
-					<view class="quan" hover-class="hover-class" @click="openQuanHandler">
+					<!-- <view class="quan" hover-class="hover-class" @click="openQuanHandler">
 						<text class="xpos-font">&#xe6b8;</text>
-					</view>
+					</view> -->
 					<view class="confirm-order-btn" hover-class="hover-class" @click="goToQuanPageHandler">
 						<text>去结算</text>
 					</view>
