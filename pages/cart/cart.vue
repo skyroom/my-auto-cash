@@ -1,5 +1,5 @@
 <template>
-	<view class="cart-page-box page-box" style="background: url(../../static/bgx.jpg);background-size:cover;" @click="allClickHandler">
+	<view :class="['cart-page-box', 'page-box', theme + '-cart']" @click="allClickHandler">
 		<scroll-view 
 			class="goods-scroll" 
 			scroll-y="scrollY">
@@ -401,6 +401,9 @@
 // 				this.isFocus = true;
 // 			}
 // 		},
+		mounted() {
+			console.log('theme', this.theme);
+		},
 
 }
 </script>

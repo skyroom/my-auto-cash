@@ -1,4 +1,5 @@
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import { cancelDuration } from '../common/config.js';
 
 export default {
@@ -7,6 +8,11 @@ export default {
 			cancelDuration: cancelDuration,
 			cancelTimer: '',
 		};
+	},
+	computed: {
+		...mapGetters([
+			'theme',
+		]),
 	},
 	methods: {
 		startCancelDuration() {
