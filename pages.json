@@ -67,35 +67,35 @@
     	"navigationBarBackgroundColor": "#5eaf31"
     },
 	"condition" : { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式(list 的索引项)
+		"current": 3, //当前激活的模式(list 的索引项)
 		"list": [
 			{
-				"name": "index", //模式名称
+				"name": "index", //模式名称  0
 				"path": "pages/index/index", //启动页面，必选
 				"query": "" //启动参数，在页面的onLoad函数里面得到
 			},
 			{
-				"name": "payResult", //模式名称
+				"name": "payResult", //模式名称  1
 				"path": "pages/payResult/payResult", //启动页面，必选
 				"query": "" //启动参数，在页面的onLoad函数里面得到
 			},
 			{
-				"name": "cart", //模式名称
+				"name": "cart", //模式名称  2
 				"path": "pages/cart/cart", //启动页面，必选
 				"query": "" //启动参数，在页面的onLoad函数里面得到
 			},
 			{
-				"name": "quan", //模式名称
+				"name": "quan", //模式名称  3
 				"path": "pages/quan/quan", //启动页面，必选
 				"query": "" //启动参数，在页面的onLoad函数里面得到
 			},
 			{
-				"name": "choose", //模式名称
+				"name": "choose", //模式名称   4
 				"path": "pages/choose/choose", //启动页面，必选
 				"query": "" //启动参数，在页面的onLoad函数里面得到
 			},
 			{
-				"name": "login", //模式名称
+				"name": "login", //模式名称   5
 				"path": "pages/login/login", //启动页面，必选
 				"query": "" //启动参数，在页面的onLoad函数里面得到
 			}

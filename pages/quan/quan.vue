@@ -116,8 +116,8 @@
 		
 		<!-- 底部固定按钮 -->
 		<view class="fixed-btn-con">
-			<view class="back-btn btn" @click="backHandler">返回购物</view>
-			<view class="pay-btn btn" @click="openPayTypeHandler">确认支付</view>
+			<view class="xpos-font font-btn" hover-class="hover-class" @click="backHandler">&#xe616;</view>
+			<view class="pay-btn btn" hover-class="hover-class" @click="openPayTypeHandler">确认支付</view>
 		</view>
 	</view>
 </template>

@@ -143,7 +143,7 @@
 			}
 		}
 		.pop-page {
-			background-color: rgba(71, 158, 23, .7);
+			background-color: rgba(71, 158, 23, .6);
 			width: 100%;
 			height: 30upx;
 			border-radius: 30upx;

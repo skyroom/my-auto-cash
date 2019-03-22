@@ -3,8 +3,8 @@ import actions from './actions';
 import getters from './getters';
 
 const initState = {
-    // theme: 'gray',
-	theme: 'qlife',
+    theme: 'gray',
+	// theme: 'qlife',
 };
 
 const mutations = {
