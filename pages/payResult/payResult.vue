@@ -22,6 +22,9 @@
 	import xposCommonMixins from '../../components/xpos-common-mixins.vue';
 	import xposCancel from '../../components/xpos-cancel.vue';
 	
+	// const dcRichAlert = uni.requireNativePlugin('DCloud-RichAlert');
+	const demoRichAlert = uni.requireNativePlugin('DCloud-demo');
+	
 	export default {
 		mixins: [xposCommonMixins],
 		components: {
@@ -35,6 +38,38 @@
 		},
 		methods: {
 			goIndexPageHandler() {
+				
+// 				dcRichAlert.show({
+// 					position: 'bottom',
+// 					title: "提示信息",
+// 					titleColor: '#FF0000',
+// 					content: "<a href='https://uniapp.dcloud.io/' value='Hello uni-app'>uni-app</a> 是一个使用 Vue.js 开发跨平台应用的前端框架!\n免费的\n免费的\n免费的\n重要的事情说三遍",
+// 					contentAlign: 'left',
+// 					checkBox: {
+// 						title: '不再提示',
+// 						isSelected: true
+// 					},
+// 					buttons: [{
+// 						title: '取消'
+// 					}, {
+// 						title: '否'
+// 					}, {
+// 						title: '确认',
+// 						titleColor: '#3F51B5'
+// 					}]
+// 				}, result => {
+// 					console.log(result)
+// 				});
+
+				demoRichAlert.removeScanListen((result) => {
+					uni.showToast({
+						title: '监听结束',
+						duration: 2000
+					});
+				});
+				
+				
+				return;
 				uni.reLaunch({
 					url: '/pages/index/index'
 				});
@@ -50,6 +85,7 @@
 		},
 		onReady() {
 			this.startCancelDuration();
+			demoRichAlert.startScanListen();
 		}
 	}
 </script>
